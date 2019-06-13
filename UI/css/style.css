@@ -1,0 +1,197 @@
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans&display=swap);
+
+:root {
+  --baseColor: #ff3e9f;
+  --accentColorII: #ff7166;
+  --accentColorIII: #66ff81;
+  --accentColorIV: #f9ff66;
+  --darkGray: #3a4a4d;
+  --lightGray: #f0f8f8;
+  --white: white;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 0.9rem;
+  background-color: whitesmoke;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.ab-row {
+  display: flex;
+  display: -webkit-flex;
+}
+
+.ab-justify-content-sb {
+  justify-content: space-between;
+}
+
+.ab-justify-content-sa {
+  justify-content: space-around;
+}
+
+.ab-justify-content-c {
+  justify-content: center;
+}
+
+.ab-align-self {
+  align-self: center;
+}
+
+.ab-align-items {
+  align-items: center;
+}
+
+.ab-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.ab-flex-start {
+  justify-content: flex-start;
+}
+
+.ab-flex-end {
+  justify-content: flex-end;
+}
+
+.ab-text-center {
+  text-align: center;
+}
+
+.ab-cursor-pointer {
+  cursor: pointer;
+}
+
+.ab-hide {
+  display: none;
+}
+
+h1.text-design {
+  font-weight: bolder;
+}
+
+/* .ab-card {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), -2px -2px 5px rgba(0, 0, 0, 0.5);
+} */
+
+/*widths*/
+.ab-col-1 {
+  width: 8.33%;
+}
+.ab-col-2 {
+  width: 16.66%;
+}
+.ab-col-3 {
+  width: 25%;
+}
+.ab-col-4 {
+  width: 33.33%;
+}
+.ab-col-5 {
+  width: 41.66%;
+}
+.ab-col-6 {
+  width: 50%;
+}
+.ab-col-7 {
+  width: 58.33%;
+}
+.ab-col-8 {
+  width: 66.66%;
+}
+.ab-col-9 {
+  width: 75%;
+}
+.ab-col-10 {
+  width: 83.33%;
+}
+.ab-col-11 {
+  width: 91.66%;
+}
+.ab-col-12 {
+  width: 100%;
+}
+
+/*margins*/
+.ab-mg-auto {
+  margin: auto;
+}
+
+/*navbar*/
+nav {
+  color: var(--white);
+  background-color: var(--baseColor);
+  padding: 0 2rem 0 2rem;
+}
+
+.ab-menu {
+  position: fixed;
+  left: 0;
+}
+
+/*form*/
+.ab-card {
+  background-color: var(--lightGray);
+  width: 350px;
+  max-width: 400px;
+  margin-top: 3rem;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.ab-card-heading {
+  color: black;
+  padding: 1rem;
+}
+
+.ab-input-fields {
+  display: block;
+  background: transparent;
+  color: var(--darkGray);
+  border: 2px solid var(--darkGray);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.ab-input-fields::placeholder {
+  color: black;
+}
+.ab-button {
+  display: block;
+  color: white;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  background-color: var(--baseColor);
+}
+.ab-button:hover {
+  background-color: #f5278e;
+}
+.ab-card a {
+  color: black !important;
+  font-weight: bold;
+}
