@@ -5,7 +5,7 @@
   --accentColorII: #ff7166;
   --accentColorIII: #66ff81;
   --accentColorIV: #f9ff66;
-  --darkGray: #3a4a4d;
+  --darkGray: #094752;
   --lightGray: #f0f8f8;
   --white: white;
 }
@@ -58,6 +58,9 @@ li {
 
 .ab-align-items {
   align-items: center;
+}
+.ab-align-content {
+  align-content: center;
 }
 
 .ab-flex-wrap {
@@ -135,11 +138,38 @@ h1.text-design {
   margin: auto;
 }
 
+.ab-mg-topI {
+  margin-top: 1rem;
+}
+
+.ab-mg-topII {
+  margin-top: 3rem;
+}
+
+.ab-mg-topIII {
+  margin-top: 5rem;
+}
+
+.ab-row-text {
+  margin-left: 5px;
+}
+
 /*navbar*/
 nav {
   color: var(--white);
   background-color: var(--baseColor);
   padding: 0 2rem 0 2rem;
+}
+
+.ab-toggle-icon {
+  border: 2px solid white;
+  padding: 0.4rem 0.6rem 0.4rem 0.6rem;
+  border-radius: 0.4rem;
+  box-shadow: 1px 1px 2px white, -1px -1px 2px white;
+}
+
+.ab-toggle-icon:hover {
+  background-color: #f5278e;
 }
 
 .ab-menu {
@@ -152,7 +182,6 @@ nav {
   background-color: var(--lightGray);
   width: 350px;
   max-width: 400px;
-  margin-top: 3rem;
   padding: 0 2rem 1rem 2rem;
   transition: 0.5s;
 }
@@ -177,7 +206,7 @@ nav {
 .ab-input-fields::placeholder {
   color: black;
 }
-.ab-button {
+.ab-button-secondary {
   display: block;
   color: white;
   border: none;
@@ -185,11 +214,11 @@ nav {
   border-radius: 5px;
   width: 100%;
   padding: 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
   background-color: var(--baseColor);
 }
-.ab-button:hover {
+.ab-button-secondary:hover {
   background-color: #f5278e;
 }
 .ab-card a {
@@ -199,4 +228,42 @@ nav {
 .ab-card p,
 .ab-card a {
   font-size: 0.8rem;
+}
+
+/*images*/
+
+.ab-img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*property*/
+.ab-row-child {
+  width: 25%;
+}
+.ab-card-major {
+  background-color: white;
+  margin: 10px;
+  padding: 1rem;
+  max-width: 100%;
+  border-radius: 6px;
+  box-shadow: 3px 3px 5px rgb(197, 197, 197), -3px -3px 5px rgb(197, 197, 197);
+}
+.ab-row .ab-row h4 {
+  background-color: var(--accentColorIV);
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+/*small screens */
+@media only screen and (max-width: 768px) {
+  .ab-row-child {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .ab-row-child {
+    width: 65%;
+  }
 }

@@ -20,13 +20,16 @@
 
   <body>
     <nav class="ab-row ab-justify-content-sb">
-      <a href="javascript:void(0)">
+      <a href="./index.html">
         <div class="ab-row">
           <i class="fa fa-home fa-2x ab-align-self"></i>
           <h1 class="text-design">PropertyPro</h1>
         </div>
       </a>
-      <i class="fa fa-user fa-2x ab-align-self" id="toggleMenu"></i>
+      <i
+        class="fa fa-user fa-2x ab-align-self ab-toggle-icon ab-cursor-pointer"
+        id="toggleMenu"
+      ></i>
       <ul class="ab-menu ab-hide">
         <li><a href="javascript:void(0)">Create a property advert</a></li>
         <li><a href="javascript:void(0)">My property advert</a></li>
@@ -59,6 +62,16 @@
           />
           <input
             class="ab-input-fields ab-mg-auto"
+            type="text"
+            placeholder="Address"
+          />
+          <input
+            class="ab-input-fields ab-mg-auto"
+            type="phone"
+            placeholder="Phone Number"
+          />
+          <input
+            class="ab-input-fields ab-mg-auto"
             type="password"
             placeholder="Password"
           />
@@ -67,11 +80,10 @@
             type="password"
             placeholder="Repeat Password"
           />
-          <button class="ab-button text-center ab-cursor-pointer">
+          <button class="ab-button-secondary text-center ab-cursor-pointer">
             Register
           </button>
-          <div class="ab-row ab-justify-content-sb">
-            <a href="javascript:void(0)"><p>Forgot Password</p></a>
+          <div class="ab-row ab-justify-content-c">
             <p>Registered? <a href="./signin.html">Login</a></p>
           </div>
         </form>
