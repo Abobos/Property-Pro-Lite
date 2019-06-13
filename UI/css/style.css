@@ -154,6 +154,7 @@ nav {
   max-width: 400px;
   margin-top: 3rem;
   padding: 0 2rem 1rem 2rem;
+  transition: 0.5s;
 }
 
 .ab-card-heading {
@@ -194,4 +195,8 @@ nav {
 .ab-card a {
   color: black !important;
   font-weight: bold;
+}
+.ab-card p,
+.ab-card a {
+  font-size: 0.8rem;
 }
