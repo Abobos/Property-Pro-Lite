@@ -9,6 +9,7 @@
   --lightGray: #f0f8f8;
   --white: white;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -42,37 +43,46 @@ li {
 
 .ab-justify-content-sb {
   justify-content: space-between;
+  -webkit-justify-content: space-between;
 }
 
 .ab-justify-content-sa {
   justify-content: space-around;
+  -webkit-justify-content: space-around;
 }
 
 .ab-justify-content-c {
   justify-content: center;
+  -webkit-justify-content: center;
 }
 
 .ab-align-self {
   align-self: center;
+  -webkit-align-self: center;
 }
 
 .ab-align-items {
   align-items: center;
+  -webkit-align-items: center;
 }
 .ab-align-content {
   align-content: center;
+  -webkit-align-content: center;
 }
 
 .ab-flex-wrap {
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
 }
 
 .ab-flex-start {
   justify-content: flex-start;
+  -webkit-justify-content: flex-start;
 }
 
 .ab-flex-end {
   justify-content: flex-end;
+  -webkit-justify-content: flex-end;
 }
 
 .ab-text-center {
@@ -90,10 +100,6 @@ li {
 h1.text-design {
   font-weight: bolder;
 }
-
-/* .ab-card {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5), -2px -2px 5px rgba(0, 0, 0, 0.5);
-} */
 
 /*widths*/
 .ab-col-1 {
@@ -149,6 +155,9 @@ h1.text-design {
 .ab-mg-topIII {
   margin-top: 5rem;
 }
+.ab-mg-bottomI {
+  margin-bottom: 0.5rem;
+}
 
 .ab-row-text {
   margin-left: 5px;
@@ -172,18 +181,50 @@ nav {
   background-color: #f5278e;
 }
 
+/*sideNav*/
 .ab-menu {
   position: fixed;
-  left: 0;
+  right: 0;
+  background: var(--lightGray);
+  height: 100vh;
+  width: 250px;
+  padding: 1.4rem;
+  transition: 0.8s;
+}
+.ab-menu li {
+  margin: 5px;
+  color: black;
+}
+.ab-menu a {
+  font-weight: bold;
+  display: block;
+  text-align: right;
+  margin: 1rem 0 1rem 0;
+  transition: 0.3s;
 }
 
-/*form*/
+.ab-menu a:hover {
+  color: #09ccee;
+}
+li.ab-close-btn {
+  font-size: 1.3rem;
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  border: none;
+}
+
+li.ab-close-btn:hover {
+  color: grey;
+}
+
+/*forms*/
 .ab-card {
   background-color: var(--lightGray);
-  width: 350px;
+  width: 500px;
   max-width: 400px;
   padding: 0 2rem 1rem 2rem;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .ab-card-heading {
@@ -206,6 +247,24 @@ nav {
 .ab-input-fields::placeholder {
   color: black;
 }
+
+.ab-card a {
+  color: black !important;
+  font-weight: bold;
+}
+.ab-card p,
+.ab-card a {
+  font-size: 0.8rem;
+}
+
+/*buttons*/
+.ab-button-primary {
+  background-color: var(--darkGray);
+  color: white;
+  padding: 0.5rem;
+  width: 70px;
+  outline: none;
+}
 .ab-button-secondary {
   display: block;
   color: white;
@@ -221,17 +280,43 @@ nav {
 .ab-button-secondary:hover {
   background-color: #f5278e;
 }
-.ab-card a {
-  color: black !important;
-  font-weight: bold;
+
+.ab-button-default {
+  background: transparent;
+  outline: none;
+  padding: 0.5rem;
 }
-.ab-card p,
-.ab-card a {
-  font-size: 0.8rem;
+/*section*/
+.ab-section {
+  padding: 1rem;
+  height: 30vh;
+  color: white;
+}
+.ab-section-item {
+  height: 30vh;
+}
+.ab-bg-color {
+  background-color: rgb(102, 102, 102);
+}
+/* .ab-bg-img {
+  background-image: url("../imgs/home4.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+} */
+.ab-section-item h1 {
+  font-size: 1.5rem;
+}
+
+.ab-sectionI {
+  height: 7vh;
+}
+.ab-select {
+  border: 3px solid var(--darkGray);
 }
 
 /*images*/
-
 .ab-img {
   max-width: 100%;
   height: auto;
@@ -251,8 +336,25 @@ nav {
 }
 .ab-row .ab-row h4 {
   background-color: var(--accentColorIV);
-  padding: 0.5rem;
+  padding: 0.3rem;
   border-radius: 6px;
+}
+
+/*About*/
+.ab-about {
+  background-color: var(--lightGray);
+  padding: 1.7rem;
+  line-height: 1.8rem;
+}
+
+/*footer*/
+.ab-footer {
+  margin-top: 3rem;
+  background-color: var(--darkGray);
+  width: 100vw;
+  padding: 0.6rem;
+  color: white;
+  letter-spacing: 0.09rem;
 }
 
 /*small screens */
@@ -265,5 +367,23 @@ nav {
 @media only screen and (max-width: 600px) {
   .ab-row-child {
     width: 65%;
+  }
+  .ab-section {
+    height: 35vh;
+  }
+  .ab-section-item {
+    height: 35vh;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .ab-section {
+    height: 35vh;
+  }
+  .ab-section-item {
+    height: 35vh;
+  }
+  .ab-section-item h1 {
+    font-size: 1rem;
   }
 }
