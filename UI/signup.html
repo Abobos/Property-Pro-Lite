@@ -28,14 +28,16 @@
       </a>
       <i
         class="fa fa-user fa-2x ab-align-self ab-toggle-icon ab-cursor-pointer"
-        id="toggleMenu"
+        id="openSideNav"
       ></i>
-      <ul class="ab-menu ab-hide">
+
+      <ul class="ab-menu ab-hide" id="sideNav">
         <li><a href="javascript:void(0)">Create a property advert</a></li>
         <li><a href="javascript:void(0)">My property advert</a></li>
-        <li><a href="javascript:void(0)">Orders</a></li>
-        <li><a href="javascript:void(0)">Login</a></li>
-        <li><a href="javascript:void(0)">Register</a></li>
+        <li><a href="javascript:void(0)">View purchase orders</a></li>
+        <li><a href="./signin.html">Login</a></li>
+        <li><a href="./signup.html">Register</a></li>
+        <li class="ab-close-btn ab-cursor-pointer" id="closeSideNav">&times</li>
       </ul>
     </nav>
 
@@ -49,36 +51,43 @@
             class="ab-input-fields ab-mg-auto"
             type="text"
             placeholder="First Name"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto"
             type="text"
             placeholder="Last Name"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto"
             type="email"
             placeholder="Email"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto"
             type="text"
             placeholder="Address"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto"
-            type="phone"
+            type="tel"
             placeholder="Phone Number"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto"
             type="password"
             placeholder="Password"
+            required
           />
           <input
             class="ab-input-fields ab-mg-auto "
             type="password"
             placeholder="Repeat Password"
+            required
           />
           <button class="ab-button-secondary text-center ab-cursor-pointer">
             Register
@@ -89,5 +98,6 @@
         </form>
       </div>
     </div>
+    <script src="./js/script.js"></script>
   </body>
 </html>
