@@ -3,7 +3,7 @@
 :root {
   --baseColor: #ff3e9f;
   --accentColorII: #ff7166;
-  --accentColorIII: #66ff81;
+  --accentColorIII: rgb(88, 212, 92);
   --accentColorIV: #f9ff66;
   --darkGray: #094752;
   --lightGray: #f0f8f8;
@@ -159,6 +159,10 @@ h1.text-design {
   margin-bottom: 0.5rem;
 }
 
+.ab-mg-leftI {
+  margin-left: 0.3rem;
+}
+
 .ab-row-text {
   margin-left: 5px;
 }
@@ -189,7 +193,8 @@ nav {
   height: 100vh;
   width: 250px;
   padding: 1.4rem;
-  transition: 0.8s;
+  transition: 1s;
+  z-index: 1;
 }
 .ab-menu li {
   margin: 5px;
@@ -197,9 +202,9 @@ nav {
 }
 .ab-menu a {
   font-weight: bold;
-  display: block;
-  text-align: right;
-  margin: 1rem 0 1rem 0;
+  display: inline-block;
+  text-align: left;
+  margin: 0.5rem 0 0.5rem 0;
   transition: 0.3s;
 }
 
@@ -211,6 +216,7 @@ li.ab-close-btn {
   font-weight: bold;
   position: fixed;
   top: 0;
+  right: 5px;
   border: none;
 }
 
@@ -224,7 +230,7 @@ li.ab-close-btn:hover {
   width: 500px;
   max-width: 400px;
   padding: 0 2rem 1rem 2rem;
-  transition: 0.2s;
+  transition: 0.5s;
 }
 
 .ab-card-heading {
@@ -256,7 +262,15 @@ li.ab-close-btn:hover {
 .ab-card a {
   font-size: 0.8rem;
 }
+.ab-text-area {
+  resize: none;
+  width: 100%;
+  height: 10rem;
+}
 
+.ab-report-card {
+  width: 300px;
+}
 /*buttons*/
 .ab-button-primary {
   background-color: var(--darkGray);
@@ -281,11 +295,41 @@ li.ab-close-btn:hover {
   background-color: #f5278e;
 }
 
+.ab-button-info {
+  color: white;
+  background-color: var(--accentColorIII);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.ab-button-info:hover {
+  background-color: rgb(63, 189, 68);
+}
+
+.ab-button-danger {
+  display: block;
+  background: var(--accentColorII);
+  outline: none;
+  border: none;
+  padding: 0.5rem;
+  color: white;
+  border-radius: 5px;
+}
+
+.ab-button-danger:hover {
+  background: #f85145;
+}
+
 .ab-button-default {
   background: transparent;
   outline: none;
   padding: 0.5rem;
+  border: 2px solid white;
+  border-radius: 5px;
 }
+
 /*section*/
 .ab-section {
   padding: 1rem;
@@ -294,24 +338,29 @@ li.ab-close-btn:hover {
 }
 .ab-section-item {
   height: 30vh;
+  line-height: 2rem;
+  background-color: rgba(223, 72, 190, 0.3);
+  width: 100%;
+  position: absolute;
 }
 .ab-bg-color {
-  background-color: rgb(102, 102, 102);
+  background-color: rgba(223, 72, 190, 0.267);
 }
-/* .ab-bg-img {
+.ab-bg-img {
   background-image: url("../imgs/home4.jpg");
   background-position: center;
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-} */
+}
 .ab-section-item h1 {
   font-size: 1.5rem;
 }
-
 .ab-sectionI {
   height: 7vh;
 }
+
 .ab-select {
   border: 3px solid var(--darkGray);
 }
@@ -330,17 +379,23 @@ li.ab-close-btn:hover {
   background-color: white;
   margin: 10px;
   padding: 1rem;
-  max-width: 100%;
   border-radius: 6px;
   box-shadow: 3px 3px 5px rgb(197, 197, 197), -3px -3px 5px rgb(197, 197, 197);
 }
-.ab-row .ab-row h4 {
-  background-color: var(--accentColorIV);
+.ab-property-details {
+  background-color: rgb(240, 229, 229);
+}
+.ab-property-details-heading {
+  background-color: var(--darkGray);
+  color: white;
+
   padding: 0.3rem;
-  border-radius: 6px;
 }
 
-/*About*/
+.ab-property-details-body {
+  padding: 0rem 1rem 1rem 1rem;
+}
+/*about*/
 .ab-about {
   background-color: var(--lightGray);
   padding: 1.7rem;
@@ -376,14 +431,14 @@ li.ab-close-btn:hover {
   }
 }
 
-@media only screen and (max-width: 400px) {
-  .ab-section {
-    height: 35vh;
-  }
-  .ab-section-item {
-    height: 35vh;
-  }
+@media only screen and (max-width: 350px) {
   .ab-section-item h1 {
     font-size: 1rem;
+  }
+  .ab-section {
+    height: 45vh;
+  }
+  .ab-section-item {
+    height: 45vh;
   }
 }
