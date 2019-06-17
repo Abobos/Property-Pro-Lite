@@ -49,7 +49,7 @@
       class="ab-row ab-justify-content-c align-items ab-mg-topI"
       id="propertyDetailsCard"
     >
-      <div class="ab-card-major">
+      <div class="ab-card-major ab-property-card">
         <div>
           <img src="./imgs/home5.jpg" class="ab-img" alt="apartment" />
         </div>
@@ -81,6 +81,10 @@
             <div class="ab-row ab-justify-content-sb">
               <h4>Status</h4>
               <h5>Available</h5>
+            </div>
+            <div class="ab-row ab-justify-content-sb">
+              <h4>Price</h4>
+              <h5>N3,000,000</h5>
             </div>
           </div>
           <div>
@@ -114,19 +118,21 @@
       id="reportForm"
     >
       <div class="ab-card-major ab-report-card">
-        <input class="ab-input-fields" type="text" placeholder="address" />
-        <select class="ab-input-fields" name="flags">
-          <option value="pricing">pricing</option>
-          <option value="wierd demands">wierd demands</option>
-          <option value="others">others</option>
-        </select>
-        <textarea
-          class="ab-input-fields ab-text-area"
-          placeholder="description"
-        ></textarea>
-        <button class="ab-button-danger ab-cursor-pointer ab-mg-auto">
-          report advert
-        </button>
+        <form>
+          <input class="ab-input-fields" type="text" placeholder="address" />
+          <select class="ab-input-fields" name="flags">
+            <option value="pricing">pricing</option>
+            <option value="wierd demands">wierd demands</option>
+            <option value="others">others</option>
+          </select>
+          <textarea
+            class="ab-input-fields ab-text-area"
+            placeholder="description"
+          ></textarea>
+          <button class="ab-button-danger ab-cursor-pointer ab-mg-auto">
+            report advert
+          </button>
+        </form>
       </div>
     </div>
     <script src="./js/script.js"></script>
