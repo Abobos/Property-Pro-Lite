@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" type="image/png" href="./favicon/icon.png" />
+    <link rel="icon" type="image/jpg" href="./favicon/icon.png" />
     <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
@@ -18,7 +18,7 @@
     <title>Property Pro Lite</title>
   </head>
 
-  <body>
+  <body id="propertyAdvertPage">
     <nav class="ab-row ab-justify-content-sb">
       <a href="./index.html">
         <div class="ab-row">
@@ -44,28 +44,44 @@
       </ul>
     </nav>
 
-    <div class="ab-row ab-justify-content-c ab-mg-topI">
+    <div class="ab-row ab-justify-content-c ab-align-items ab-mg-topI">
       <div class="ab-card">
         <form>
           <h4 class="ab-card-heading ab-text-center">
-            Register and access nifty features
+            Post Your Property Advert
           </h4>
           <input
             class="ab-input-fields ab-mg-auto"
             type="text"
-            placeholder="First Name"
+            placeholder="Name of Property"
+            required
+          />
+          <select class="ab-input-fields" name="flags">
+            <option value="" disabled selected>Property Type</option>
+            <option value="miniflat">miniflat</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedroom">2 Bedroom</option>
+            <option value="3 Bedroom">3 Bedroom</option>
+            <option value="4 Bedroom">4 Bedroom</option>
+          </select>
+          <div id="uploadedImage"></div>
+          <input
+            id="fileUploadBtn"
+            class="ab-input-fields ab-mg-auto"
+            type="file"
+            accept="image/*"
             required
           />
           <input
             class="ab-input-fields ab-mg-auto"
             type="text"
-            placeholder="Last Name"
+            placeholder="State"
             required
           />
           <input
             class="ab-input-fields ab-mg-auto"
-            type="email"
-            placeholder="Email"
+            type="text"
+            placeholder="City"
             required
           />
           <input
@@ -76,28 +92,14 @@
           />
           <input
             class="ab-input-fields ab-mg-auto"
-            type="tel"
-            placeholder="Phone Number"
+            type="text"
+            placeholder="Price"
             required
           />
-          <input
-            class="ab-input-fields ab-mg-auto"
-            type="password"
-            placeholder="Password"
-            required
-          />
-          <input
-            class="ab-input-fields ab-mg-auto "
-            type="password"
-            placeholder="Repeat Password"
-            required
-          />
-          <button class="ab-button-secondary text-center ab-cursor-pointer">
-            Register
+
+          <button class="ab-button-info ab-mg-auto ab-cursor-pointer">
+            Post Advert
           </button>
-          <div class="ab-row ab-justify-content-c">
-            <p>Registered? <a href="./signin.html">Login</a></p>
-          </div>
         </form>
       </div>
     </div>
