@@ -11,8 +11,23 @@ const fileUploadBtn = document.querySelector("#fileUploadBtn");
 const uploadedImage = document.querySelector("#uploadedImage");
 
 const propertyDetailsPage = document.querySelector("#propertyDetailsPage");
-const propertyDetailsCard = document.querySelector("#propertyDetailsCard");
+const userPropertyAdvertPage = document.querySelector(
+  "#userPropertyAdvertPage"
+);
 
+const specificPropertyAdvertPage = document.querySelector(
+  "#specificPropertyAdvertPage"
+);
+const viewPropertyAdvertBtns = document.querySelectorAll(
+  ".viewPropertyAdvertBtn"
+);
+
+const propertyAdvertDetailsCard = document.querySelector(
+  "#propertyAdvertDetailsCard"
+);
+const updateForm = document.querySelector("#updateForm");
+const updateAdvertBtn = document.querySelector("#updateAdvertBtn");
+const propertyDetailsCard = document.querySelector("#propertyDetailsCard");
 const reportForm = document.querySelector("#reportForm");
 const flagAdvertBtn = document.querySelector("#flagAdvertBtn");
 const viewPropertyBtns = document.querySelectorAll(".viewProperty");
@@ -63,5 +78,20 @@ if (propertyAdvertPage) {
       uploadedImage.removeChild(uploadedImage.firstChild);
     }
     readFileAsync(fileUploadBtn.files);
+  });
+}
+
+if (userPropertyAdvertPage) {
+  viewPropertyAdvertBtns.forEach(viewPropertyAdvertBtn => {
+    viewPropertyAdvertBtn.addEventListener("click", () => {
+      window.location.replace("specificpropertyadvert.html");
+    });
+  });
+}
+
+if (specificPropertyAdvertPage) {
+  updateAdvertBtn.addEventListener("click", () => {
+    propertyAdvertDetailsCard.classList.add("ab-hide");
+    updateForm.classList.remove("ab-hide");
   });
 }
