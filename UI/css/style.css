@@ -192,12 +192,12 @@ nav {
   background: var(--lightGray);
   height: 100vh;
   width: 250px;
+  top: 0;
   padding: 1.4rem;
   transition: 1s;
   z-index: 1;
 }
 .ab-menu li {
-  margin: 5px;
   color: black;
 }
 .ab-menu a {
@@ -215,8 +215,8 @@ li.ab-close-btn {
   font-size: 1.3rem;
   font-weight: bold;
   position: fixed;
-  top: 0;
-  right: 5px;
+  top: -0.3rem;
+  right: 15px;
   border: none;
 }
 
@@ -227,8 +227,7 @@ li.ab-close-btn:hover {
 /*forms*/
 .ab-card {
   background-color: var(--lightGray);
-  width: 500px;
-  max-width: 400px;
+  width: 400px;
   padding: 0 2rem 1rem 2rem;
   background-color: white;
   border-radius: 6px;
@@ -278,12 +277,16 @@ li.ab-close-btn:hover {
 /*buttons*/
 .ab-button-primary {
   display: block;
-  background-color: var(--darkGray);
+  background-color: #18606d;
   color: white;
   padding: 0.5rem;
   outline: none;
   border: none;
   border-radius: 5px;
+}
+
+.ab-button-primary:hover {
+  background-color: var(--darkGray);
 }
 .ab-button-secondary {
   display: block;
@@ -380,7 +383,7 @@ li.ab-close-btn:hover {
 
 /*property*/
 .ab-row-child {
-  width: 25%;
+  flex-basis: 25%;
 }
 .ab-card-major {
   background-color: white;
@@ -414,7 +417,7 @@ li.ab-close-btn:hover {
 }
 
 .ab-table tr > td:nth-child(1) {
-  text-align: left !important;
+  text-align: leflex-basismportant;
 }
 .ab-table td,
 .ab-table th {
@@ -424,7 +427,7 @@ li.ab-close-btn:hover {
 }
 
 .ab-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+  backgrounflex-basisor: #f2f2f2;
 }
 
 .ab-table tr:hover {
@@ -458,13 +461,13 @@ li.ab-close-btn:hover {
 /*small screens */
 @media only screen and (max-width: 768px) {
   .ab-row-child {
-    width: 45%;
+    flex-basis: 45%;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .ab-row-child {
-    width: 65%;
+    flex-basis: 65%;
   }
   .ab-section {
     height: 35vh;
@@ -483,5 +486,8 @@ li.ab-close-btn:hover {
   }
   .ab-section-item {
     height: 45vh;
+  }
+  .ab-flex-direction {
+    flex-direction: column;
   }
 }

@@ -18,6 +18,10 @@ const userPropertyAdvertPage = document.querySelector(
 const specificPropertyAdvertPage = document.querySelector(
   "#specificPropertyAdvertPage"
 );
+const siginPage = document.querySelector("#signinPage");
+const sigupPage = document.querySelector("#signupPage");
+const loginBtn = document.querySelector("#loginBtn");
+const registerBtn = document.querySelector("#registerBtn");
 const viewPropertyAdvertBtns = document.querySelectorAll(
   ".viewPropertyAdvertBtn"
 );
@@ -27,6 +31,12 @@ const propertyAdvertDetailsCard = document.querySelector(
 );
 const updateForm = document.querySelector("#updateForm");
 const updateAdvertBtn = document.querySelector("#updateAdvertBtn");
+const deleteAdvertBtn = document.querySelector("#deleteAdvertBtn");
+
+const modal = document.querySelector(".ab-modal");
+const yesBtn = document.querySelector("#yesBtn");
+const noBtn = document.querySelector("#noBtn");
+// const modalCloseBtn = document.querySelector("#modalCloseBtn");
 const propertyDetailsCard = document.querySelector("#propertyDetailsCard");
 const reportForm = document.querySelector("#reportForm");
 const flagAdvertBtn = document.querySelector("#flagAdvertBtn");
@@ -40,12 +50,24 @@ closeSideNavBtn.addEventListener("click", () => {
   sideNav.classList.add("ab-hide");
 });
 
-if (indexPage || searchPropertyPage) {
+if (indexPage) {
+  searchBtn.addEventListener("click", e => {
+    e.preventDefault();
+    window.location.href = "index.html";
+  });
+
+  viewPropertyBtns.forEach(viewPropertyBtn => {
+    viewPropertyBtn.addEventListener("click", () => {
+      window.location.replace("propertydetails.html");
+    });
+  });
+}
+
+if (searchPropertyPage) {
   searchBtn.addEventListener("click", e => {
     e.preventDefault();
     window.location.href = "searchproperty.html";
   });
-
   viewPropertyBtns.forEach(viewPropertyBtn => {
     viewPropertyBtn.addEventListener("click", () => {
       window.location.replace("propertydetails.html");
@@ -93,5 +115,30 @@ if (specificPropertyAdvertPage) {
   updateAdvertBtn.addEventListener("click", () => {
     propertyAdvertDetailsCard.classList.add("ab-hide");
     updateForm.classList.remove("ab-hide");
+  });
+
+  deleteAdvertBtn.addEventListener("click", () => {
+    modal.classList.remove("ab-hide");
+  });
+  // modalCloseBtn.addEventListener("click", closeModal);
+  noBtn.addEventListener("click", () => {
+    modal.classList.add("ab-hide");
+  });
+  yesBtn.addEventListener("click", () => {
+    window.location.replace("mypropertyadverts.html");
+  });
+}
+
+if (siginPage) {
+  loginBtn.addEventListener("click", e => {
+    e.preventDefault();
+    window.location.replace("searchproperty.html");
+  });
+}
+
+if (signupPage) {
+  registerBtn.addEventListener("click", e => {
+    e.preventDefault();
+    window.location.replace("searchproperty.html");
   });
 }
