@@ -1,6 +1,7 @@
 const openSideNavBtn = document.querySelector("#openSideNav");
 const closeSideNavBtn = document.querySelector("#closeSideNav");
 const sideNav = document.querySelector("#sideNav");
+const nav = document.querySelector("#nav");
 const searchBtn = document.querySelector("#searchBtn");
 
 const indexPage = document.querySelector("#indexPage");
@@ -31,6 +32,8 @@ const propertyAdvertDetailsCard = document.querySelector(
 );
 const updateForm = document.querySelector("#updateForm");
 const updateAdvertBtn = document.querySelector("#updateAdvertBtn");
+const updateBtn = document.querySelector("#updateBtn");
+const markBtn = document.querySelector("#markBtn");
 const deleteAdvertBtn = document.querySelector("#deleteAdvertBtn");
 
 const modal = document.querySelector(".ab-modal");
@@ -43,11 +46,13 @@ const flagAdvertBtn = document.querySelector("#flagAdvertBtn");
 const viewPropertyBtns = document.querySelectorAll(".viewProperty");
 
 openSideNavBtn.addEventListener("click", () => {
-  sideNav.classList.remove("ab-hide");
+  sideNav.style.width = "250px";
+  if (screen.width >= "600") nav.style.marginRight = "250px";
 });
 
 closeSideNavBtn.addEventListener("click", () => {
-  sideNav.classList.add("ab-hide");
+  sideNav.style.width = "0";
+  nav.style.marginRight = "0";
 });
 
 if (indexPage) {
@@ -119,13 +124,31 @@ if (specificPropertyAdvertPage) {
 
   deleteAdvertBtn.addEventListener("click", () => {
     modal.classList.remove("ab-hide");
+    noBtn.addEventListener("click", () => {
+      modal.classList.add("ab-hide");
+    });
+    yesBtn.addEventListener("click", () => {
+      window.location.replace("mypropertyadverts.html");
+    });
   });
   // modalCloseBtn.addEventListener("click", closeModal);
-  noBtn.addEventListener("click", () => {
-    modal.classList.add("ab-hide");
+  markBtn.addEventListener("click", () => {
+    modal.classList.remove("ab-hide");
+    noBtn.addEventListener("click", () => {
+      modal.classList.add("ab-hide");
+    });
+    yesBtn.addEventListener("click", () => {
+      const parentElement = markBtn.parentElement.previousElementSibling;
+      const statusDetails = parentElement.children[1].children[6].children[1];
+      modal.classList.add("ab-hide");
+      statusDetails.textContent = "Sold";
+      statusDetails.previousElementSibling.innerHTML = `Status  <i class="fa fa-minus-circle ab-red"></i>`;
+    });
   });
-  yesBtn.addEventListener("click", () => {
-    window.location.replace("mypropertyadverts.html");
+  updateBtn.addEventListener("click", e => {
+    e.preventDefault();
+    updateForm.classList.add("ab-hide");
+    propertyAdvertDetailsCard.classList.remove("ab-hide");
   });
 }
 
