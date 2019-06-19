@@ -93,6 +93,14 @@ li {
   cursor: pointer;
 }
 
+.ab-green {
+  color: var(--accentColorIII);
+}
+
+.ab-red {
+  color: var(--accentColorII);
+}
+
 .ab-hide {
   display: none;
 }
@@ -172,6 +180,7 @@ nav {
   color: var(--white);
   background-color: var(--baseColor);
   padding: 0 2rem 0 2rem;
+  transition: margin-right 0.5s;
 }
 
 .ab-toggle-icon {
@@ -186,21 +195,26 @@ nav {
 }
 
 /*sideNav*/
+
 .ab-menu {
-  position: fixed;
-  right: 0;
   background: var(--lightGray);
   height: 100vh;
-  width: 250px;
-  top: 0;
-  padding: 1.4rem;
-  transition: 1s;
+  position: fixed;
+  overflow-x: hidden;
   z-index: 1;
+  width: 0;
+  right: 0;
+  top: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
-.ab-menu li {
+.ab-menu-nav {
+  padding: 1.4rem;
+}
+.ab-menu-nav li {
   color: black;
 }
-.ab-menu a {
+.ab-menu-nav a {
   font-weight: bold;
   display: inline-block;
   text-align: left;
@@ -208,13 +222,13 @@ nav {
   transition: 0.3s;
 }
 
-.ab-menu a:hover {
+.ab-menu-nav a:hover {
   color: #09ccee;
 }
 li.ab-close-btn {
   font-size: 1.3rem;
   font-weight: bold;
-  position: fixed;
+  position: absolute;
   top: -0.3rem;
   right: 15px;
   border: none;
@@ -427,7 +441,7 @@ li.ab-close-btn:hover {
 }
 
 .ab-table tr:nth-child(even) {
-  backgrounflex-basisor: #f2f2f2;
+  background-color: #f2f2f2;
 }
 
 .ab-table tr:hover {
