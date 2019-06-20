@@ -1,0 +1,24 @@
+{
+  "name": "propertypro",
+  "version": "1.0.0",
+  "description": "PropertyPro is a platform where people can create and/or search property for sale or rent",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abobos/Property-Pro-Lite.git"
+  },
+  "author": "Blessing Makaraba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abobos/Property-Pro-Lite/issues"
+  },
+  "homepage": "https://github.com/Abobos/Property-Pro-Lite#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3"
+  }
+}

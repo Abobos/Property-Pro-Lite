@@ -226,11 +226,11 @@ nav {
   color: #09ccee;
 }
 li.ab-close-btn {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: bold;
   position: absolute;
-  top: -0.3rem;
-  right: 15px;
+  top: 0.1rem;
+  right: 2rem;
   border: none;
 }
 
@@ -375,6 +375,10 @@ li.ab-close-btn:hover {
   font-size: 2rem;
 }
 
+.ab-section-item p {
+  font-weight: bold;
+}
+
 .ab-sectionI {
   background-color: rgba(223, 72, 190, 0.3);
   height: 7vh;
@@ -474,7 +478,7 @@ li.ab-close-btn:hover {
 }
 
 /*small screens */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   .ab-row-child {
     flex-basis: 45%;
   }
@@ -488,7 +492,7 @@ li.ab-close-btn:hover {
 
 @media only screen and (max-width: 375px) {
   .ab-section-item h1 {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .ab-flex-direction {
     flex-direction: column;
