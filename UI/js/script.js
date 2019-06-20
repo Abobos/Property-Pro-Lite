@@ -35,7 +35,7 @@ const updateAdvertBtn = document.querySelector("#updateAdvertBtn");
 const updateBtn = document.querySelector("#updateBtn");
 const markBtn = document.querySelector("#markBtn");
 const deleteAdvertBtn = document.querySelector("#deleteAdvertBtn");
-
+const postAdvertBtn = document.querySelector("#postAdvertBtn");
 const modal = document.querySelector(".ab-modal");
 const yesBtn = document.querySelector("#yesBtn");
 const noBtn = document.querySelector("#noBtn");
@@ -105,6 +105,10 @@ if (propertyAdvertPage) {
       uploadedImage.removeChild(uploadedImage.firstChild);
     }
     readFileAsync(fileUploadBtn.files);
+  });
+  postAdvertBtn.addEventListener("click", e => {
+    e.preventDefault();
+    window.location.replace("mypropertyadverts.html");
   });
 }
 
