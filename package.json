@@ -4,8 +4,8 @@
   "description": "PropertyPro is a platform where people can create and/or search property for sale or rent",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:start": "nodemon --exec babel-node server.js"
+    "test": "mocha --require @babel/register './Server/test.js' --exit",
+    "dev:start": "set DEBUG=* && nodemon --exec babel-node ./Server/server.js"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,10 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "mocha": "^6.1.4"
   }
 }
