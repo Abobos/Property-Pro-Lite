@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha --require @babel/register './Server/test.js' --exit",
-    "coverage": "nyc npm test && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
+    "coverage": "npm test && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
     "build": "babel Server --out-dir build",
     "start": "set DEBUG=http* && node build/server.js",
     "dev:start": "set DEBUG=http* && nodemon --exec babel-node ./Server/server.js"
