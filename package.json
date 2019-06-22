@@ -4,8 +4,11 @@
   "description": "PropertyPro is a platform where people can create and/or search property for sale or rent",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --require @babel/register './Server/test.js' --exit",
-    "dev:start": "set DEBUG=* && nodemon --exec babel-node ./Server/server.js"
+    "test": "nyc mocha --require @babel/register './Server/test.js' --exit",
+    "coverage": "nyc npm test && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
+    "build": "babel Server --out-dir build",
+    "start": "set DEBUG=http* && node build/server.js",
+    "dev:start": "set DEBUG=http* && nodemon --exec babel-node ./Server/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,7 @@
     "@babel/core": "^7.4.5",
     "@babel/node": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
+    "coveralls": "^3.0.4",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.3",
@@ -32,6 +36,7 @@
     "chai-http": "^4.3.0",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "mocha": "^6.1.4"
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1"
   }
 }
