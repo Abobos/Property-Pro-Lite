@@ -1,7 +1,7 @@
 export default class Validators {
-  static isEmpty(string) {
-    return /^$/.test(string);
-  }
+  // static isEmpty(string) {
+  //   return /^$/.test(string);
+  // }
 
   static isLength(string, length) {
     return string.length >= length;

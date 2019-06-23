@@ -7,4 +7,10 @@ export default class UserController {
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
+
+  static signin(req, res) {
+    const response = userService.signin(req.body);
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
+    return sendSuccessResponse(res, response.code, response.token, response.data);
+  }
 }

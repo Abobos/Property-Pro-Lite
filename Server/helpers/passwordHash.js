@@ -5,7 +5,7 @@ export default class PasswordHash {
     return bcrypt.hashSync(password, 10);
   }
 
-  // static compareHashPassword(rawPassword, hashedPassword) {
-  //   return bcrypt.compareSync(rawPassword, hashedPassword);
-  // }
+  static compareHashPassword(rawPassword, hashedPassword) {
+    return bcrypt.compareSync(rawPassword, hashedPassword);
+  }
 }

@@ -19,7 +19,7 @@ const userData = [
     password: hashedPassword,
     phoneNumber: '08050883023',
     address: '10 Jakapa Road, Effurun, Delta State',
-    is_admin: false,
+    is_admin: true,
   },
 ];
 

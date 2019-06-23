@@ -6,7 +6,7 @@ import app from '../app';
 chai.use(chaiHttp);
 
 describe('POST api/v1/auth/signup', () => {
-  it('Should display an error message of "This email already exists" when exisitnguser wants to signup again', (done) => {
+  it('Should display a status of success', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({ 
@@ -44,130 +44,6 @@ describe('POST api/v1/auth/signup', () => {
         done();
       });
   });
-
-  
-  it('Should display an error message of "Email cannot be empty " when email is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: '',
-        first_name: 'Blessing',
-        last_name: 'Abobo',
-        password: 'Blessing9',
-        phoneNumber: '08167672019',
-        address: '10 Oladipupo Oduwole',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Email cannot be empty');
-        done();
-      });
-  });
-
-
-  it('Should display an error message of "FirstName cannot be empty " when first_name is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: 'giftabobo@gmail.com',
-        first_name: '',
-        last_name: 'Abobo',
-        password: 'Blessing9',
-        phoneNumber: '08167672019',
-        address: '10 Oladipupo Oduwole',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('FirstName cannot be empty');
-        done();
-      });
-  });
-
-  it('Should display an error message of "LastName cannot be empty " when last_name is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: 'giftabobo@gmail.com',
-        first_name: 'Gift',
-        last_name: '',
-        password: 'Blessing9',
-        phoneNumber: '08167672019',
-        address: '10 Oladipupo Oduwole',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('LastName cannot be empty');
-        done();
-      });
-  });
-
-  it('Should display an error message of "password cannot be empty " when password is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: 'giftabobo@gmail.com',
-        first_name: 'Gift',
-        last_name: 'Abobo',
-        password: '',
-        phoneNumber: '08167672019',
-        address: '10 Oladipupo Oduwole',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Password cannot be empty');
-        done();
-      });
-  });
-
-  it('Should display an error message of "Phone Number cannot be empty" when phone Number is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: 'giftabobo@gmail.com',
-        first_name: 'Gift',
-        last_name: 'Abobo',
-        password: 'Blessing9',
-        phoneNumber: '',
-        address: '10 Oladipupo Oduwole',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Phone Number cannot be empty');
-        done();
-      });
-  });
-
-  
-  it('Should display an error message of "Address cannot be empty " when address is empty', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .send({ 
-        email: 'giftabobo@gmail.com',
-        first_name: 'Gift',
-        last_name: 'Abobo',
-        password: 'Blessing9',
-        phoneNumber: '08167672019',
-        address: '',
-      })
-      .end((err, res) => {
-        expect(res.status).to.be.eql(400);
-        expect(res.body).to.be.an('object');
-        expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Address cannot be empty');
-        done();
-      });
-  });
-
   
   it('Should display an error message of "FirstName should contain only alphabets"', (done) => {
     chai.request(app)
@@ -184,7 +60,7 @@ describe('POST api/v1/auth/signup', () => {
         expect(res.status).to.be.eql(400);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('FirstName should contain only alphabets');
+        expect(res.body.error).to.eql('FirstName is not allowed to be empty, and it should contain only alphabets');
         done();
       });
   });
@@ -204,7 +80,7 @@ describe('POST api/v1/auth/signup', () => {
         expect(res.status).to.be.eql(400);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('LastName should contain only alphabets');
+        expect(res.body.error).to.eql('LastName is not allowed to be empty, and it should contain only alphabets');
         done();
       });
   });
@@ -264,7 +140,7 @@ describe('POST api/v1/auth/signup', () => {
         expect(res.status).to.be.eql(400);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Email is not valid');
+        expect(res.body.error).to.eql('Please enter a valid email');
         done();
       });
   });
@@ -324,9 +200,104 @@ describe('POST api/v1/auth/signup', () => {
         expect(res.status).to.be.eql(400);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Your address is not vaild');
+        expect(res.body.error).to.eql('Please enter a valid address');
         done();
       });
   });
 
+  it('Should display an error message of "Email is not valid"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({
+        email: 'giftabobo@gmail',
+        password: 'Bless9',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Please enter a valid email');
+        done();
+      });
+  });
+
+  it('Should display an error message of "Password should be at least six characters"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ 
+        email: 'giftabobo@gmail.com',
+        password: 'Bless',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Password should be at least six characters');
+        done();
+      });
+  });
+
+  it('Should display an error message of "Password should contain at least one Uppercase letter, one lowercase letter, and at least one digit"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ 
+        email: 'giftabobo@gmail.com',
+        password: 'Blesss',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Password should contain at least one Uppercase letter, one lowercase letter, and at least one digit');
+        done();
+      });
+  });
+
+  it('Should display an error message of "Invalid credentials"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ 
+        email: 'giftabos@gmail.com',
+        password: 'Blessing9',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Invalid credentials');
+        done();
+      });
+  });
+
+  it('Should display an error message of "Invalid credentials"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ 
+        email: 'giftabobos@gmail.com',
+        password: 'Blessin9',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(401);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Invalid credentials');
+        done();
+      });
+  });
+
+  it('Should display an sucess message "success"', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send({ 
+        email: 'giftabobos@gmail.com',
+        password: 'Blessing9',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data).to.have.all.keys('token', 'id', 'first_name', 'last_name', 'email');
+        done();
+      });
+  });
 });
