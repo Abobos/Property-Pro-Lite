@@ -1,16 +1,18 @@
+const indexPage = document.querySelector("#indexPage");
 const searchPropertyPage = document.querySelector("#searchPropertyPage");
 const searchBtn = document.querySelector("#searchBtn");
-const viewPropertyBtns = document.querySelectorAll(".viewProperty");
 
-
-if (searchPropertyPage) {
-  searchBtn.addEventListener("click", e => {
+const search = (page) => {
+  searchBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    window.location.href = "searchproperty.html";
-  });
-  viewPropertyBtns.forEach(viewPropertyBtn => {
-    viewPropertyBtn.addEventListener("click", () => {
-      window.location.replace("propertydetails.html");
-    });
+    window.location.href = page;
   });
 }
+
+if (searchPropertyPage) {
+    search('searchproperty.html');
+}
+if (indexPage) {
+  search('index.html');
+}
+
