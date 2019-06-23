@@ -14,10 +14,7 @@ const yesBtn = document.querySelector("#yesBtn");
 const noBtn = document.querySelector("#noBtn");
 
 if (specificPropertyAdvertPage) {
-  updateAdvertBtn.addEventListener("click", () => {
-    propertyAdvertDetailsCard.classList.add("ab-hide");
-    updateForm.classList.remove("ab-hide");
-  });
+  buttonController(updateAdvertBtn, propertyAdvertDetailsCard, updateForm);
 
   deleteAdvertBtn.addEventListener("click", () => {
     modal.classList.remove("ab-hide");
