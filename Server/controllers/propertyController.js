@@ -6,4 +6,12 @@ export default class PropertyController {
     const response = propertyService.postPropertyAdvert(req.body);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
+
+  static updatePropertyAdvert(req, res) {
+    const { propertyId } = req.params;
+    const { price } = req.body;
+    const response = propertyService.updatePropertyAdvert(propertyId, price);
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
+    return sendSuccessResponse(res, response.code, response.token, response.data);
+  }
 }
