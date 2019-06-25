@@ -41,5 +41,21 @@ export default class PropertyService {
       data: property,
     };
   }
+
+  static markPropertyAdvert(propertyId) {
+    const property = propertyModel.findProperty(+propertyId);
+    if (!property) {
+      return {
+        code: 404,
+        error: 'The property with the given ID does not exist',
+      };
+    }
+    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
+    propertyModel.properties[propertyIndex].status = 'sold';
+    return {
+      code: 200,
+      data: property,
+    };
+  }
 }
 
