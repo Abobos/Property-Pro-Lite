@@ -154,6 +154,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
+        console.log(err);
         expect(res.status).to.be.eql(201);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('success');
