@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 
 export default class PasswordHash {
   static hashPassword(password) {
-    return bcrypt.hashSync(password, 10);
+    return bcrypt.hash(password, 10);
   }
 
   static compareHashPassword(rawPassword, hashedPassword) {
-    return bcrypt.compareSync(rawPassword, hashedPassword);
+    return bcrypt.compare(rawPassword, hashedPassword);
   }
 }

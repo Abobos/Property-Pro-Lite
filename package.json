@@ -4,7 +4,7 @@
   "description": "PropertyPro is a platform where people can create and/or search property for sale or rent",
   "main": "server.js",
   "scripts": {
-    "test": "nyc mocha --require @babel/register './Server/tests/*.js' --exit",
+    "test": "nyc mocha --require @babel/register --no-timeout './Server/tests/*.js' --exit",
     "coverage": "npm test && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
     "build": "babel Server --out-dir build",
     "start": "set DEBUG=http* && node build/app.js",
@@ -37,6 +37,7 @@
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cloudinary": "^1.14.0",
     "debug": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",

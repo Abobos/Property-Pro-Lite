@@ -5,7 +5,7 @@ import app from '../app';
 
 chai.use(chaiHttp);
 
-describe('POST api/v1/auth/signup', () => {
+describe('POST /signup & /signin', () => {
   it('Should display a status of success', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')

@@ -1,5 +1,5 @@
 const hashedPassword = '$2b$10$jy7fUHpGxmMDqJN8nA4bCuvbLNxz7HSc8HBRpF9IGFhtHtHilMqh2';
-const userData = [
+const usersData = [
   {
     id: 1,
     email: 'giftabobo@gmail.com',
@@ -23,4 +23,4 @@ const userData = [
   },
 ];
 
-export default userData;
+export default usersData;
