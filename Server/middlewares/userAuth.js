@@ -2,24 +2,9 @@ import validator from '../utils/validator';
 import sendErrorResponse from '../helpers/sendResponse';
 
 export default class Auth {
-  static trimmer(req, res, next) {
-    const userData = {};
-    Object.keys(req.body).forEach((property) => {
-      const value = req.body[property];
-      Object.assign(userData, { [property]: value.trim() });
-    });
-    req.body = userData;
-    return next();
-  }
-
   static signup(req, res, next) {
     const {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password,
-      phoneNumber,
-      address,
+      first_name: firstName, last_name: lastName, email, password, phoneNumber, address,
     } = req.body;
     if (!validator.isName(firstName)) return sendErrorResponse(res, 400, 'FirstName is not allowed to be empty, and it should contain only alphabets');
     if (!validator.isName(lastName)) return sendErrorResponse(res, 400, 'LastName is not allowed to be empty, and it should contain only alphabets');

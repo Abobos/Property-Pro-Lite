@@ -3,7 +3,7 @@ import passwordHash from '../helpers/passwordHash';
 import generateToken from '../middlewares/tokenHandler';
 
 export default class userService {
-  static signup(newUserEntry) {
+  static async signup(newUserEntry) {
     const existingUser = userModel.findUser(newUserEntry.email);
     if (existingUser) {
       return {
@@ -19,7 +19,7 @@ export default class userService {
       phoneNumber,
       address,
     } = newUserEntry;
-    const hashedPassword = passwordHash.hashPassword(password);
+    const hashedPassword = await passwordHash.hashPassword(password);
     const newUser = {
       id: userModel.users.length + 1,
       first_name: firstName,
@@ -43,7 +43,7 @@ export default class userService {
     };
   }
 
-  static signin(userEntry) {
+  static async signin(userEntry) {
     const existingUser = userModel.findUser(userEntry.email);
     if (!existingUser) {
       return {
@@ -51,7 +51,7 @@ export default class userService {
         error: 'Invalid credentials',
       };
     }
-    const hash = passwordHash.compareHashPassword(userEntry.password, existingUser.password);
+    const hash = await passwordHash.compareHashPassword(userEntry.password, existingUser.password);
     if (!hash) {
       return {
         code: 401,

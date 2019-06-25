@@ -13,5 +13,4 @@ export const sendSuccessResponse = (res, code, token, data) => {
   });
 }
 
-
 export default sendErrorResponse;

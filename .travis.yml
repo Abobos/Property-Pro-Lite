@@ -3,10 +3,6 @@ language: node_js
 node_js:
   - "stable"
 
-env:
-  global:
-    - CC_TEST_REPORTER_ID=c5a2a54132d8321f8f4a077d547c5117ddc4878c5abc33df5758c28296f51d3b
-
 cache:
   directories:
     - "node_modules"
@@ -16,6 +12,8 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
+install:
+  - npm install
 script:
   - npm run coverage
 
