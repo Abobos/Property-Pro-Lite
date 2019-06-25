@@ -7,7 +7,7 @@ export default class Property {
       name, price, type, state, city, address,
     } = req.body;
     const { path } = req.files[0];
-    const imagePath = path.split('\\')[1];
+    const imagePath = path.split('/')[1];
     if (!validator.isPropertyName(name)) return sendErrorResponse(res, 400, 'Property Name is not allowed to be empty, and it should contain only alphabets e.g Gold Apartments, Silver Buildings, Dapper Houses, Edifice');
     if(validator.isEmpty(price)) return sendErrorResponse(res, 400, 'Price is not allowed to be empty');
     if (isNaN(price)) return sendErrorResponse(res, 400, 'Price is not allowed to be empty, and it should be of the form: 3000000, 300000.90');

@@ -14,4 +14,11 @@ export default class PropertyController {
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
+
+  static markPropertyAdvert(req, res) {
+    const { propertyId } = req.params;
+    const response = propertyService.markPropertyAdvert(propertyId);
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
+    return sendSuccessResponse(res, response.code, response.token, response.data);
+  }
 }
