@@ -25,4 +25,21 @@ export default class PropertyService {
       data: newPropertyAdvert,
     };
   }
+
+  static updatePropertyAdvert(propertyId, propertyNewPrice) {
+    const property = propertyModel.findProperty(+propertyId);
+    if (!property) {
+      return {
+        code: 404,
+        error: 'The property with the given ID does not exist',
+      };
+    }
+    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
+    propertyModel.properties[propertyIndex].price = propertyNewPrice;
+    return {
+      code: 200,
+      data: property,
+    };
+  }
 }
+

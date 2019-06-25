@@ -9,21 +9,23 @@ class PropertyModel {
     this.properties.push(property);
   }
 
-    // findProperty(propertyId) {
-  //   return this.properties.find(({ id }) => id === propertyId);
-  // }
+  findProperty(propertyId) {
+    return this.properties.find(({ id }) => id === propertyId);
+  }
 
-  // findPropertyIndex(propertyId) {
-  //   return this.properties.findIndex(({ id }) => id === propertyId);
-  // }
+  findPropertyIndex(propertyId) {
+    return this.properties.findIndex(({ id }) => id === propertyId);
+  }
 
-  // removeProperty(propertyPosition) {
-  //   this.properties.slice(propertyPosition, 1);
-  // }
 
   // updateProperty(propertyPosition, updatedProperty) {
   //   this.properties.slice(propertyPosition, 1, updatedProperty);
   // }
+ 
+  // removeProperty(propertyPosition) {
+  //   this.properties.slice(propertyPosition, 1);
+  // }
+
 }
 
 export default new PropertyModel();
