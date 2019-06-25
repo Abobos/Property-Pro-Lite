@@ -1,0 +1,49 @@
+{
+  "name": "propertypro",
+  "version": "1.0.0",
+  "description": "PropertyPro is a platform where people can create and/or search property for sale or rent",
+  "main": "server.js",
+  "scripts": {
+    "test": "nyc mocha --require @babel/register --no-timeout './Server/tests/*.js' --exit",
+    "coverage": "npm test && nyc report --reporter=lcov --reporter=text-lcov | coveralls",
+    "build": "babel Server --out-dir build",
+    "start": "set DEBUG=http* && node build/app.js",
+    "dev:start": "set DEBUG=http* && nodemon --exec babel-node ./Server/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abobos/Property-Pro-Lite.git"
+  },
+  "author": "Blessing Makaraba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abobos/Property-Pro-Lite/issues"
+  },
+  "homepage": "https://github.com/Abobos/Property-Pro-Lite#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "coveralls": "^3.0.4",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0",
+    "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cloudinary": "^1.14.0",
+    "debug": "^4.1.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.1.4",
+    "multer": "^1.4.1",
+    "nyc": "^14.1.1"
+  }
+}
