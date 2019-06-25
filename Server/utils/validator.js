@@ -1,8 +1,4 @@
 export default class Validators {
-  // static isEmpty(string) {
-  //   return /^$/.test(string);
-  // }
-
   static isLength(string, length) {
     return string.length >= length;
   }
@@ -26,4 +22,17 @@ export default class Validators {
   static isAddress(address) {
     return /^[A-Za-z0-9\,\. \-]{5,30}$/.test(address);
   }
+
+  static isPropertyName(PropertyName) {
+    return /^[a-zA-Z\s]+$/.test(PropertyName);
+  }
+
+  static isPropertyType(propertyType) {
+    return /^([0-9]|[a-z]+)\s[a-z]+$/.test(propertyType);
+  }
+  
+  static isImageType(imagePath) {
+    return /^[a-zA-Z0-9\_\-]+\.(jpg|png|jpeg)$/.test(imagePath);
+  }
 }
+

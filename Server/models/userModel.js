@@ -6,8 +6,7 @@ class UserModel {
   }
   
   findUser(userEmail) {
-    const existingUser = this.users.find(({ email }) => email === userEmail);
-    return existingUser;
+    return this.users.find(({ email }) => email === userEmail);
   }
 
   createUser(newUser) {
