@@ -80,7 +80,15 @@ export default class PropertyService {
     return {
       code: 200,
       data: propertyModel.properties,
-    } 
+    };
+  }
+
+  static getSpecificPropertiesAdvert(query) {
+    const properties = propertyModel.properties.filter(({ type }) => type === query.type);
+    return {
+      code: 200,
+      data: properties,
+    }
   }
 }
 

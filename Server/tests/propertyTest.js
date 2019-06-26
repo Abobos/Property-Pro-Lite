@@ -322,4 +322,29 @@ describe('GET api/v1/property', () => {
   });
 });
 
+describe('GET api/v1/property?type=propertyType', () => {
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .get('/api/v1/property')
+      .query({type: '3 Bedroom'})
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        done();
+      });
+  });
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .get('/api/v1/property')
+      .query({type: '3 bedroom'})
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        done();
+      });
+  });
+});
+
 
