@@ -283,3 +283,31 @@ describe('PATCH api/v1/property/:propertyId', () => {
   });
 });
 
+describe('DELETE api/v1/property/:propertyId', () => {
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .delete('/api/v1/property/13')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('The property with the given ID does not exist');
+        done();
+      });
+  });
+
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .delete('/api/v1/property/8')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data.message).to.eql('Property advert deleted successfully');
+        done();
+      });
+  });
+});
+
+
+

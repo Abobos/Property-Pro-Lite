@@ -32,11 +32,10 @@ export default class Validators {
   }
   
   static isImageType(imagePath) {
-    return /^[a-zA-Z0-9\_\-]+\.(jpg|png|jpeg)$/.test(imagePath);
+    return /(\.jpg|\.png|\.jpeg)$/.test(imagePath);
   }
 
   static isEmpty(string) {
     return /^$/.test(string);
   }
 }
-

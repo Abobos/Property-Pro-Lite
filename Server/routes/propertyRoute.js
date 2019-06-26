@@ -8,8 +8,9 @@ import PropertyController from '../controllers/propertyController';
 const router = Router();
 
 router.post('/property', upload.array('image', 10), trimmer, Auth.postProperty, cloudinary.imageUploader, PropertyController.postPropertyAdvert);
-router.patch('/property/:propertyId', Auth.updateProperty, PropertyController.updatePropertyAdvert);
-router.patch('/property/:propertyId/sold', PropertyController.markPropertyAdvert);
+router.patch('/property/:propertyId', Auth.propertyId, Auth.updateProperty, PropertyController.updatePropertyAdvert);
+router.patch('/property/:propertyId/sold', Auth.propertyId, PropertyController.markPropertyAdvert);
+router.delete('/property/:propertyId', Auth.propertyId, PropertyController.deletePropertyAdvert);
 
 export default router;
 
