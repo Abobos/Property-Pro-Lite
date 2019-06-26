@@ -42,4 +42,11 @@ export default class PropertyController {
     }
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
+
+  static getSpecificPropertyDetails(req, res) {
+    const { propertyId } = req.params;
+    const response = propertyService.getSpecificPropertyDetails(propertyId);
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
+    return sendSuccessResponse(res, response.code, response.token, response.data);
+  }
 }

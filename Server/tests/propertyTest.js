@@ -347,4 +347,25 @@ describe('GET api/v1/property?type=propertyType', () => {
   });
 });
 
-
+describe('GET api/v1/property/:propertyId', () => {
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .get('/api/v1/property/14')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        done();
+      });
+  });
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .get('/api/v1/property/5')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        done();
+      });
+  });
+});

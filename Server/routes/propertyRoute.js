@@ -12,6 +12,6 @@ router.patch('/property/:propertyId', Auth.propertyId, Auth.updateProperty, Prop
 router.patch('/property/:propertyId/sold', Auth.propertyId, PropertyController.markPropertyAdvert);
 router.delete('/property/:propertyId', Auth.propertyId, PropertyController.deletePropertyAdvert);
 router.get('/property', Auth.getProperties, PropertyController.getPropertiesAdvert);
-
+router.get('/property/:propertyId', Auth.propertyId, PropertyController.getSpecificPropertyDetails);
 export default router;
 

@@ -90,5 +90,19 @@ export default class PropertyService {
       data: properties,
     }
   }
+
+  static getSpecificPropertyDetails(propertyId) {
+    const property = propertyModel.findProperty(+propertyId);
+    if (!property) {
+      return {
+        code: 404,
+        error: 'The property with the given ID does not exist',
+      }
+    };
+    return {
+      code: 200,
+      data: property,
+    }
+  }
 }
 
