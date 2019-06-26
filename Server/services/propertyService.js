@@ -75,5 +75,12 @@ export default class PropertyService {
       }
     }
   }
+
+  static getPropertiesAdvert() {
+    return {
+      code: 200,
+      data: propertyModel.properties,
+    } 
+  }
 }
 

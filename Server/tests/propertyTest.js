@@ -309,5 +309,17 @@ describe('DELETE api/v1/property/:propertyId', () => {
   });
 });
 
+describe('GET api/v1/property', () => {
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .get('/api/v1/property')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        done();
+      });
+  });
+});
 
 
