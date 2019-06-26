@@ -29,8 +29,17 @@ export default class PropertyController {
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
+  static getSpecificPropertiesAdvert(query) {
+    const response = propertyService.getSpecificPropertiesAdvert(query);
+    return response;
+  }
+
   static getPropertiesAdvert(req, res) {
-    const response = propertyService.getPropertiesAdvert();
+    let response;
+    if (req.query.type) response = PropertyController.getSpecificPropertiesAdvert(req.query);
+    else { 
+      response = propertyService.getPropertiesAdvert();
+    }
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 }

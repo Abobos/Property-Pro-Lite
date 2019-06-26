@@ -30,4 +30,12 @@ export default class Property {
     if (isNaN(price)) return sendErrorResponse(res, 400, 'Please enter a valid price e.g 30000000, 30054400.9');
     return next();
   }
+  
+  static getProperties(req, res, next) {
+    if (req.query.type) {
+      const { type } = req.query;
+      if (!validator.isPropertyType(type)) return sendErrorResponse(res, 400, 'Please enter a valid property type, it should be of the form: 4 bedroom, 3 bedroom, 2 bedroom, mini flat, etc.');
+    } 
+    return next();
+  }
 }
