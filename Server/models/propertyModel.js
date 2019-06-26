@@ -17,15 +17,9 @@ class PropertyModel {
     return this.properties.findIndex(({ id }) => id === propertyId);
   }
 
-
-  // updateProperty(propertyPosition, updatedProperty) {
-  //   this.properties.slice(propertyPosition, 1, updatedProperty);
-  // }
- 
-  // removeProperty(propertyPosition) {
-  //   this.properties.slice(propertyPosition, 1);
-  // }
-
+  deleteProperty(propertyPosition) {
+    this.properties.splice(propertyPosition, 1);
+  }
 }
 
 export default new PropertyModel();

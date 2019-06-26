@@ -41,7 +41,7 @@ export default class PropertyService {
       data: property,
     };
   }
-
+  
   static markPropertyAdvert(propertyId) {
     const property = propertyModel.findProperty(+propertyId);
     if (!property) {
@@ -56,6 +56,24 @@ export default class PropertyService {
       code: 200,
       data: property,
     };
+  }
+
+  static deletePropertyAdvert(propertyId) {
+    const property = propertyModel.findProperty(+propertyId);
+    if (!property) {
+      return {
+        code: 404,
+        error: 'The property with the given ID does not exist',
+      }
+    };
+    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
+    propertyModel.deleteProperty(propertyIndex);
+    return {
+      code: 200,
+      data: {
+        message: 'Property advert deleted successfully',
+      }
+    }
   }
 }
 
