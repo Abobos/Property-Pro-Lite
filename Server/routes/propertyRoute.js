@@ -11,6 +11,7 @@ router.post('/property', upload.array('image', 10), trimmer, Auth.postProperty, 
 router.patch('/property/:propertyId', Auth.propertyId, Auth.updateProperty, PropertyController.updatePropertyAdvert);
 router.patch('/property/:propertyId/sold', Auth.propertyId, PropertyController.markPropertyAdvert);
 router.delete('/property/:propertyId', Auth.propertyId, PropertyController.deletePropertyAdvert);
+router.get('/property', PropertyController.getPropertiesAdvert);
 
 export default router;
 
