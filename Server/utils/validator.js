@@ -16,11 +16,16 @@ export default class Validators {
   }
 
   static isPassword(password) {
-    return (/\d/.test(password) && /[a-z]/.test(password) && /[A-Z]/.test(password) && /^[a-zA-Z0-9]+$/.test(password));
+    return (
+      /\d/.test(password) &&
+      /[a-z]/.test(password) &&
+      /[A-Z]/.test(password) &&
+      /^[a-zA-Z0-9]+$/.test(password)
+    );
   }
 
   static isAddress(address) {
-    return /^[A-Za-z0-9\,\. \-]{5,30}$/.test(address);
+    return /^[A-Za-z0-9\,\. \-]{5,}$/.test(address);
   }
 
   static isPropertyName(PropertyName) {
@@ -30,7 +35,7 @@ export default class Validators {
   static isPropertyType(propertyType) {
     return /^([0-9]|[a-z]+)\s[a-z]+$/.test(propertyType);
   }
-  
+
   static isImageType(imagePath) {
     return /(\.jpg|\.png|\.jpeg)$/.test(imagePath);
   }

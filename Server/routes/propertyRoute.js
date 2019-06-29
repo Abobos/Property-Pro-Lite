@@ -13,5 +13,6 @@ router.patch('/property/:propertyId/sold', Auth.propertyId, PropertyController.m
 router.delete('/property/:propertyId', Auth.propertyId, PropertyController.deletePropertyAdvert);
 router.get('/property', Auth.getProperties, PropertyController.getPropertiesAdvert);
 router.get('/property/:propertyId', Auth.propertyId, PropertyController.getSpecificPropertyDetails);
+
 export default router;
 
