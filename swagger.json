@@ -14,7 +14,11 @@
     },
     "version": "1.0.0"
   },
+<<<<<<< HEAD
   "host": "propertyprolite1.herokuapp.com",
+=======
+  "host": "https://propertyprolite1.herokuapp.com",
+>>>>>>> 6d27a974e3ab50563e3bd5b7f5eb9f7ca8620eb1
   "basePath": "/api/v1",
   "tags": [
     {
