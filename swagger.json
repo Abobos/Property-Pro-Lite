@@ -14,7 +14,7 @@
     },
     "version": "1.0.0"
   },
-  "host": "propertyprolite1herokuapp.com",
+  "host": "propertyprolite1.herokuapp.com",
   "basePath": "/api/v1",
   "tags": [
     {
