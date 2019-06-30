@@ -1,0 +1,498 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Property Pro Lite RESTFUL API",
+    "description": "Property Pro Lite is a platform where people can create and/or search for properties for sale or rent",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Blessing Makaraba",
+      "email": "blessingmakaraba@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "1.0.0"
+  },
+  "host": "propertyprolite1.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "Users",
+      "description": "API endpoint for users in the system"
+    },
+    {
+      "name": "Properties",
+      "description": "API endpoint for property posted by users in the system"
+    }
+  ],
+  "schemes": ["https", "http"],
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Creates a new user",
+        "description": "",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "summary": "",
+            "description": "Details of the user that wants to create an account",
+            "operationId": "CreateNewUserAccount",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signup"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Creates a new user"
+          },
+          "400": {
+            "description": "Invalid inputs"
+          },
+          "409": {
+            "description": "User already created"
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Signin an existing user",
+        "description": "",
+        "operationId": "SignInAUser",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "summary": "",
+            "desciption": "Details of user that wants to sign in",
+            "operationId": "SignInAUser",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Signin"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Signin an existing user"
+          },
+          "400": {
+            "description": "Invalid inputs"
+          },
+          "404": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
+    "/property": {
+      "post": {
+        "tags": ["Properties"],
+        "summary": "Post new property advert",
+        "description": "",
+        "oprationId": "PostAPropertyAdvert",
+        "consumes": ["multipart/form-data"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "Name of the Property",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "type",
+            "in": "formData",
+            "description": "Type of the property",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "state where the property is situated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "in": "formData",
+            "description": "The city where the property is situated",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "formData",
+            "description": "address of the property",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "address of the property",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "description": "The avatar of the user",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Invalid input fields"
+          },
+          "201": {
+            "description": "Property Advert Created Successfully",
+            "schema": {
+              "$ref": "#/definitions/PostPropertyAdvert"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Properties"],
+        "summary": "View all Properties advert",
+        "description": "",
+        "operationId": "GetAllPropertiesAdvert",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property Advert Created Successfully",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/getPropertiesAdvert"
+            }
+          }
+        }
+      }
+    },
+    "/property?type=propertyType": {
+      "get": {
+        "tags": ["Properties"],
+        "summary": "Get all Properties Advert of a specific type",
+        "description": "",
+        "operationId": "GetSpecificPropertiesAdvert",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property Advert Created Successfully",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/getPropertiesAdvert"
+            }
+          }
+        }
+      }
+    },
+    "/property/{propertyId}": {
+      "get": {
+        "tags": ["Properties"],
+        "summary": "Get a specific property Details",
+        "description": "",
+        "operationId": "GetASpecificPropertyDetails",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Specific Property",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/getPropertiesAdvert"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Properties"],
+        "summary": "Update the price of a specific property",
+        "description": "",
+        "consumes": "application/json",
+        "operationId": "UpdatePropertyPrice",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "body",
+            "description": "new price",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "string",
+                  "example": "3404040.4"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property that the price has been updated",
+            "schema": {
+              "type": "array",
+              "$ref": "#/definitions/getPropertiesAdvert"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Properties"],
+        "summary": "Delete a specific property",
+        "description": "Only an agent can delete a specific property",
+        "operationId": "DeleteASpecificProperty",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "A message indicating that a property has been deleted"
+          }
+        }
+      }
+    },
+    "/property/{propertyId}/sold": {
+      "patch": {
+        "tags": ["Properties"],
+        "summary": "Mark a Property Advert as sold",
+        "description": "",
+        "consumes": "application/json",
+        "operationId": "MarkAPropertyAsSold",
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Property that has been mark as sold"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Signup": {
+      "type": "object",
+      "required": [
+        "email",
+        "password",
+        "first_name",
+        "last_name",
+        "address",
+        "phoneNumber"
+      ],
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "example": "Blessing"
+        },
+        "last_name": {
+          "type": "string",
+          "example": "Makaraba"
+        },
+        "email": {
+          "type": "string",
+          "example": "blessingmakaraba@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "Bless3"
+        },
+        "address": {
+          "type": "string",
+          "example": "NO. 9 Omoru"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "example": "08167672019"
+        }
+      },
+      "xml": {
+        "name": "CreateAccount"
+      }
+    },
+    "Signin": {
+      "type": "object",
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "blessingmakaraba@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "Bless3"
+        }
+      },
+      "xml": {
+        "name": "Signin"
+      }
+    },
+    "PostPropertyAdvert": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": "1"
+        },
+        "owner": {
+          "type": "integer",
+          "example": "1"
+        },
+        "status": {
+          "type": "integer",
+          "example": "Available"
+        },
+        "name": {
+          "type": "string",
+          "example": "Gold Apartments"
+        },
+        "type": {
+          "type": "string",
+          "example": "3 bedroom"
+        },
+        "price": {
+          "type": "float",
+          "example": "3999879.02"
+        },
+        "state": {
+          "type": "string",
+          "example": "Delta"
+        },
+        "city": {
+          "type": "string",
+          "example": "Warri"
+        },
+        "address": {
+          "type": "string",
+          "example": "No. 9 Omoru"
+        },
+        "created-on": {
+          "type": "string",
+          "example": "25th January, 2018"
+        },
+        "image_url": {
+          "type": "string",
+          "example": "https://res.cloudinary.com/property-pro-lite/image/upload/v1561326667/iiyxcceemy20eeincxlf.jpg"
+        }
+      },
+      "xml": {
+        "name": "PostPropertyAdvert"
+      }
+    },
+    "getPropertiesAdvert": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "example": "1"
+        },
+        "owner": {
+          "type": "integer",
+          "example": "1"
+        },
+        "status": {
+          "type": "integer",
+          "example": "Available"
+        },
+        "name": {
+          "type": "string",
+          "example": "Gold Apartments"
+        },
+        "type": {
+          "type": "string",
+          "example": "3 bedroom"
+        },
+        "price": {
+          "type": "float",
+          "example": "3999879.02"
+        },
+        "state": {
+          "type": "string",
+          "example": "Delta"
+        },
+        "city": {
+          "type": "string",
+          "example": "Warri"
+        },
+        "address": {
+          "type": "string",
+          "example": "No. 9 Omoru"
+        },
+        "created-on": {
+          "type": "string",
+          "example": "25th January, 2018"
+        },
+        "image_url": {
+          "type": "string",
+          "example": "https://res.cloudinary.com/property-pro-lite/image/upload/v1561326667/iiyxcceemy20eeincxlf.jpg"
+        },
+        "ownerPhoneNumber": {
+          "type": "string",
+          "example": "08167672019"
+        },
+        "ownerEmail": {
+          "type": "email",
+          "example": "blessingmakaraba@gmail.com"
+        }
+      },
+      "xml": {
+        "name": "getPropertiesAdvert"
+      }
+    }
+  }
+}
