@@ -1,15 +1,15 @@
 import express from 'express';
 import '@babel/polyfill';
 import bodyParser from 'body-parser';
-import debug from 'debug';
 import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
+import logger from './utils/logger';
 import swaggerDocument from '../swagger.json';
 import userRoute from './routes/userRoute';
 import propertyRoute from './routes/propertyRoute';
 
-const log = debug('http');
 const app = express();
+const env = app.get('env');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -31,9 +31,8 @@ app.all('*', (req, res) => res.status(404).json({
   error: 'This route is unavailable',
 }));
 
-
 app.listen(port, () => {
-  log(`App started on PORT ${port}`);
+  logger(`${env}:server`, `App started on PORT ${port}`);
 })
 
 export default app;
