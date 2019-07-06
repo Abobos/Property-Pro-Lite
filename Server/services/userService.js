@@ -5,7 +5,7 @@ import generateToken from '../middlewares/tokenHandler';
 export default class userService {
   static async signup(newUserDetails) {
     try {
-      const existingUser = await userModel.dbFindUser(newUserDetails.email);
+      const existingUser = await userModel.findUser(newUserDetails.email);
       if (existingUser) {
         return {
           code: 409,
@@ -44,29 +44,36 @@ export default class userService {
   }
 
   static async signin(userEntry) {
-    const existingUser = userModel.findUser(userEntry.email);
-    if (!existingUser) {
+    try {
+      const existingUser = await userModel.findUser(userEntry.email);
+      if (!existingUser) {
+        return {
+          code: 401,
+          error: 'Invalid credentials',
+        };
+      }
+      const hashValue = await passwordHash.compareHashPassword(userEntry.password, existingUser.password);
+      if (!hashValue) {
+        return {
+          code: 401,
+          error: 'Invalid credentials',
+        };
+      }
       return {
-        code: 404,
-        error: 'Invalid credentials',
+        code: 200,
+        data: {
+          token: generateToken({ userId: existingUser.id, userEmail: existingUser.email, isAdmin: existingUser.is_admin }),
+          id: existingUser.id,
+          first_name: existingUser.first_name,
+          last_name: existingUser.last_name,
+          email: existingUser.email,
+        },
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    const hash = await passwordHash.compareHashPassword(userEntry.password, existingUser.password);
-    if (!hash) {
-      return {
-        code: 401,
-        error: 'Invalid credentials',
-      };
-    }
-    return {
-      code: 200,
-      data: {
-        token: generateToken({ userId: existingUser.id, userEmail: existingUser.email }),
-        id: existingUser.id,
-        first_name: existingUser.first_name,
-        last_name: existingUser.last_name,
-        email: existingUser.email,
-      },
-    };
   }
 }
