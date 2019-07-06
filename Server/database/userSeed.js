@@ -21,6 +21,17 @@ const usersData = [
     address: '10 Jakapa Road, Effurun, Delta State',
     is_admin: true,
   },
+
+  {
+    id: 1,
+    email: 'giftabobos@gmail.com',
+    first_name: 'Gift',
+    last_name: 'Abobo',
+    password: hashedPassword,
+    phoneNumber: '08167672019',
+    address: '10 Oladipupo Oduwole, Ojodu Berger, Lagos State',
+    is_admin: false,
+  },
 ];
 
 export default usersData;
