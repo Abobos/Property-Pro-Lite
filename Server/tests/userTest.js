@@ -9,7 +9,7 @@ describe('POST /signup & /signin', () => {
   it('Should display a status of success', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
-      .send({ 
+      .send({
         email: 'giftaboboss@gmail.com',
         first_name: 'Gift',
         last_name: 'Abobo',
