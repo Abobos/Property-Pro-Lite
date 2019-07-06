@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v1', userRoute);
+app.use('/api/v2', userRoute);
 app.use('/api/v1', propertyRoute);
 
 app.all('*', (req, res) => res.status(404).json({

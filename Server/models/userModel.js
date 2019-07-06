@@ -1,21 +1,15 @@
-import usersData from '../database/userSeed';
 import db from '../config/pool';
 
 class UserModel {
   constructor() {
-    this.users = usersData;
     this.table = 'users';
   }
 
-  async dbFindUser(userEmail) {
-    const sqlStatement = `SELECT id, first_name, last_name, email, is_admin FROM ${this.table} WHERE email = $1`;
+  async findUser(userEmail) {
+    const sqlStatement = `SELECT id, first_name, last_name, email, is_admin, password FROM ${this.table} WHERE email = $1`;
     const params = [userEmail];
     const result = await db.query(sqlStatement, params);
     return result.rows[0];
-  }
-
-  findUser(userEmail) {
-    return this.users.find(({ email }) => email === userEmail);
   }
 
   async createUser(newUser) {
