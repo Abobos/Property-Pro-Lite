@@ -6,12 +6,85 @@ import app from '../app';
 
 chai.use(chaiHttp);
 
+let userToken;
+
+const filepath = `${__dirname}/public/home5.jpg`;
+const filepathI = `${__dirname}/public/home4.gif`;
+
+describe('POST /signup & /signin', () => {
+  it('Should display a status of success', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send({
+        email: 'gtabos@gmail.com',
+        first_name: 'Gift',
+        last_name: 'Abobo',
+        password: 'Blessing9',
+        phoneNumber: '08167672019',
+        address: 'No. 9 Omoru Street'
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(201);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data).to.have.all.keys('token', 'id', 'first_name', 'last_name', 'email');
+        const { token } = res.body.data;
+        userToken = token;
+        done();
+      });
+  });
+});
+
+
 describe('POST api/v1/property', () => {
-  const filepath = `${__dirname}/public/home5.jpg`;
-  const filepathI = `${__dirname}/public/home4.gif`;
   it('Should display a success message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', '')
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .field('name', 'gift property')
+      .field('type', '3 bedroom')
+      .field('contract_type', 'For Sale')
+      .field('price', '3000000')
+      .field('state', 'Delta')
+      .field('city', 'Warri')
+      .field('address', '10 Oladipupo Oduwole')
+      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(403);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Please provide a token');
+        done();
+      });
+  });
+
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .post('/api/v1/property')
+      .set('Authorization', `${userToken}J`)
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .field('name', 'gift property')
+      .field('type', '3 bedroom')
+      .field('contract_type', 'For Sale')
+      .field('price', '3000000')
+      .field('state', 'Delta')
+      .field('city', 'Warri')
+      .field('address', '10 Oladipupo Oduwole')
+      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(403);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Something went wrong');
+        done();
+      });
+  });
+
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -30,6 +103,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift prope8rty')
       .field('type', '3 bedroom')
@@ -49,6 +123,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', 'Gift8')
@@ -68,6 +143,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -87,6 +163,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -107,6 +184,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -126,6 +204,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -145,6 +224,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -164,6 +244,7 @@ describe('POST api/v1/property', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('name', 'gift property')
       .field('type', '3 bedroom')
@@ -185,6 +266,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/10')
+      .set('Authorization', `Bearer ${userToken}`)
       .send({ 
         price: '889898.90',
       })
@@ -200,6 +282,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/1')
+      .set('Authorization', `Bearer ${userToken}`)
       .send({ 
         price: '889898.9s',
       })
@@ -215,6 +298,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/1')
+      .set('Authorization', `Bearer ${userToken}`)
       .send({ 
         price: '',
       })
@@ -229,6 +313,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/1s')
+      .set('Authorization', `Bearer ${userToken}`)
       .send({ 
         price: '889898.90',
       })
@@ -244,6 +329,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/8')
+      .set('Authorization', `Bearer ${userToken}`)
       .send({ 
         price: '889898.90',
       })
@@ -261,6 +347,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/13/sold')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
@@ -273,6 +360,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/1/sold')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
         expect(res.body).to.be.an('object');
@@ -287,6 +375,7 @@ describe('DELETE api/v1/property/:propertyId', () => {
   it('Should display an error message', (done) => {
     chai.request(app)
       .delete('/api/v1/property/13')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
@@ -299,6 +388,7 @@ describe('DELETE api/v1/property/:propertyId', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .delete('/api/v1/property/8')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
         expect(res.body).to.be.an('object');
@@ -313,6 +403,7 @@ describe('GET api/v1/property', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
         expect(res.body).to.be.an('object');
@@ -326,6 +417,7 @@ describe('GET api/v1/property?type=propertyType', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .query({type: '3 Bedroom'})
       .end((err, res) => {
         expect(res.status).to.be.eql(400);
@@ -337,6 +429,7 @@ describe('GET api/v1/property?type=propertyType', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v1/property')
+      .set('Authorization', `Bearer ${userToken}`)
       .query({type: '3 bedroom'})
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
@@ -351,6 +444,7 @@ describe('GET api/v1/property/:propertyId', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v1/property/14')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
@@ -361,6 +455,7 @@ describe('GET api/v1/property/:propertyId', () => {
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v1/property/5')
+      .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
         expect(res.body).to.be.an('object');
