@@ -12,6 +12,7 @@ const createUsersTable = `
     email VARCHAR(60) NOT NULL,
     password VARCHAR(128) NOT NULL,
     phoneNumber VARCHAR(11) NOT NULL,
+    address VARCHAR(128) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT false
 );`;
 

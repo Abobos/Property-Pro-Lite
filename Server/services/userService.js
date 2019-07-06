@@ -3,44 +3,44 @@ import passwordHash from '../helpers/passwordHash';
 import generateToken from '../middlewares/tokenHandler';
 
 export default class userService {
-  static async signup(newUserEntry) {
-    const existingUser = userModel.findUser(newUserEntry.email);
-    if (existingUser) {
+  static async signup(newUserDetails) {
+    try {
+      const existingUser = await userModel.dbFindUser(newUserDetails.email);
+      if (existingUser) {
+        return {
+          code: 409,
+          error: 'This email already exists',
+        };
+      }
+      const {
+        first_name: firstName, last_name: lastName, email, password, phoneNumber, address,
+      } = newUserDetails;
+      const hashedPassword = await passwordHash.hashPassword(password);
+      const newUser = {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password: hashedPassword,
+        phoneNumber,
+        address,
+      };
+      const userDetails = await userModel.createUser(newUser);
       return {
-        code: 409,
-        error: 'This email already exists',
+        code: 201,
+        data: {
+          token: generateToken({ userId: userDetails.id, userEmail: userDetails.email, isAdmin: userDetails.is_admin }),
+          id: userDetails.id,
+          first_name: userDetails.first_name,
+          last_name: userDetails.last_name,
+          email: userDetails.email,
+        },
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    const {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password,
-      phoneNumber,
-      address,
-    } = newUserEntry;
-    const hashedPassword = await passwordHash.hashPassword(password);
-    const newUser = {
-      id: userModel.users.length + 1,
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      password: hashedPassword,
-      phoneNumber,
-      address,
-      is_admin: false,
-    };
-    userModel.createUser(newUser);
-    return {
-      code: 201,
-      data: {
-        token: generateToken({ userId: newUser.id, userEmail: newUser.email }),
-        id: newUser.id,
-        first_name: newUser.first_name,
-        last_name: newUser.last_name,
-        email: newUser.email,
-      },
-    };
   }
 
   static async signin(userEntry) {

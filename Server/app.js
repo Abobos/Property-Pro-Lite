@@ -19,7 +19,7 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Property Pro');
+  res.send('Welcome to Property Pro API');
 });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
