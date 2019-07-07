@@ -116,18 +116,24 @@ export default class PropertyService {
     }
   }
 
-
-  static getSpecificPropertyDetails(propertyId) {
-    const property = propertyModel.findProperty(+propertyId);
-    if (!property) {
+  static async getSpecificPropertyDetails(propertyId) {
+    try {
+      const propertyDetails = await propertyModel.getProperty(+propertyId);
+      if (!propertyDetails) {
+        return {
+          code: 404,
+          error: 'The property with the given ID does not exist',
+        };
+      }
       return {
-        code: 404,
-        error: 'The property with the given ID does not exist',
+        code: 200,
+        data: propertyDetails,
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    return {
-      code: 200,
-      data: property,
-    };
   }
 }

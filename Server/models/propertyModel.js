@@ -30,7 +30,7 @@ class PropertyModel {
     return updatedProperty.rows[0];
   }
 
- async markPropertyAsSold(propertyId, owner) {
+  async markPropertyAsSold(propertyId, owner) {
     const sqlStatement = `UPDATE ${this.table} SET status = $1 WHERE id = $2 AND owner = $3 RETURNING *`;
     const markedProperty = await db.query(sqlStatement, ['Sold', propertyId, owner]);
     return markedProperty.rows[0];
@@ -60,12 +60,13 @@ class PropertyModel {
     return propertyAdverts.rows;
   }
 
-  findProperty(propertyId) {
-    return this.properties.find(({ id }) => id === propertyId);
-  }
-
-  findPropertyIndex(propertyId) {
-    return this.properties.findIndex(({ id }) => id === propertyId);
+  async getProperty(propertyId) {
+    const sqlStatement = `SELECT ${this.table}.id, ${this.table}.name, ${this.table}.status, ${this.table}.type,
+    ${this.table}.state, ${this.table}.city, ${this.table}.address, ${this.table}.price, ${this.table}.created_on,
+    ${this.table}.image_url, users.email as ownerEmail, users.phoneNumber as ownerPhoneNUmber FROM ${this.table}, users
+    WHERE ${this.table}.id = $1`;
+    const propertyDetails = await db.query(sqlStatement, [propertyId]);
+    return propertyDetails.rows[0];
   }
 }
 
