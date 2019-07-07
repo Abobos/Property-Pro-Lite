@@ -61,22 +61,28 @@ export default class PropertyService {
     }
   }
 
-  static deletePropertyAdvert(propertyId) {
-    const property = propertyModel.findProperty(+propertyId);
-    if (!property) {
+  static async deletePropertyAdvert(propertyId, owner) {
+    try {
+      const property = await propertyModel.findPropertyWithOwnerId(+propertyId, owner);
+      if (!property) {
+        return {
+          code: 404,
+          error: 'The property with the given ID does not exist for you',
+        };
+      }
+      await propertyModel.deleteProperty(+propertyId, owner);
       return {
-        code: 404,
-        error: 'The property with the given ID does not exist',
+        code: 200,
+        data: {
+          message: 'Property advert deleted successfully',
+        },
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
-    propertyModel.deleteProperty(propertyIndex);
-    return {
-      code: 200,
-      data: {
-        message: 'Property advert deleted successfully',
-      },
-    };
   }
 
   static getPropertiesAdvert() {
