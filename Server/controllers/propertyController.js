@@ -24,9 +24,9 @@ export default class PropertyController {
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
-  static deletePropertyAdvert(req, res) {
+  static async deletePropertyAdvert(req, res) {
     const { propertyId } = req.params;
-    const response = propertyService.deletePropertyAdvert(propertyId);
+    const response = await propertyService.deletePropertyAdvert(propertyId, req.decoded.userId);
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }

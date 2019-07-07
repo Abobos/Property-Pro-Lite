@@ -36,16 +36,18 @@ class PropertyModel {
     return markedProperty.rows[0];
   }
 
+  async deleteProperty(propertyId, owner) {
+    const sqlStatement = `DELETE FROM ${this.table} WHERE id = $1 AND owner = $2 RETURNING *`;
+    const deletedProperty = await db.query(sqlStatement, [propertyId, owner]);
+    return deletedProperty.rows[0];
+  }
+
   findProperty(propertyId) {
     return this.properties.find(({ id }) => id === propertyId);
   }
 
   findPropertyIndex(propertyId) {
     return this.properties.findIndex(({ id }) => id === propertyId);
-  }
-
-  deleteProperty(propertyPosition) {
-    this.properties.splice(propertyPosition, 1);
   }
 }
 

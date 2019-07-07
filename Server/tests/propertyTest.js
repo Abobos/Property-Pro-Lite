@@ -381,14 +381,14 @@ describe('DELETE api/v2/property/:propertyId', () => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('The property with the given ID does not exist');
+        expect(res.body.error).to.eql('The property with the given ID does not exist for you');
         done();
       });
   });
 
   it('Should display a success message', (done) => {
     chai.request(app)
-      .delete('/api/v2/property/8')
+      .delete('/api/v2/property/1')
       .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
