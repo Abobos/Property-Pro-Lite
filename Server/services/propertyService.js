@@ -85,11 +85,19 @@ export default class PropertyService {
     }
   }
 
-  static getPropertiesAdvert() {
-    return {
-      code: 200,
-      data: propertyModel.properties,
-    };
+  static async getPropertiesAdvert() {
+    try {
+      const propertyAdverts = await propertyModel.getPropertiesAdvert();
+      return {
+        code: 200,
+        data: propertyAdverts,
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
+      };
+    }
   }
 
   static getSpecificPropertiesAdvert(query) {

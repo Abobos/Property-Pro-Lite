@@ -36,12 +36,13 @@ export default class PropertyController {
     return response;
   }
 
-  static getPropertiesAdvert(req, res) {
+  static async getPropertiesAdvert(req, res) {
     let response;
-    if (req.query.type) response = PropertyController.getSpecificPropertiesAdvert(req.query);
-    else { 
-      response = propertyService.getPropertiesAdvert();
+    if (req.query.type) response = await PropertyController.getSpecificPropertiesAdvert(req.query);
+    else {
+      response = await propertyService.getPropertiesAdvert();
     }
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
