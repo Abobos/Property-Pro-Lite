@@ -194,6 +194,26 @@ describe('POST /signup & /signin', () => {
         last_name: 'Abobo',
         password: 'Bless9',
         phoneNumber: '08167672019',
+        address: '',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('Address is not allowed to be empty');
+        done();
+      });
+  });
+
+  it('Should display an error message of "Your address is not vaild"', (done) => {
+    chai.request(app)
+      .post('/api/v2/auth/signup')
+      .send({ 
+        email: 'giftabobo@gmail.com',
+        first_name: 'Gift',
+        last_name: 'Abobo',
+        password: 'Bless9',
+        phoneNumber: '08167672019',
         address: '10',
       })
       .end((err, res) => {
