@@ -100,13 +100,22 @@ export default class PropertyService {
     }
   }
 
-  static getSpecificPropertiesAdvert(query) {
-    const properties = propertyModel.properties.filter(({ type }) => type === query.type);
-    return {
-      code: 200,
-      data: properties,
-    };
+  static async getSpecificPropertiesAdvert(query) {
+    try {
+      const { type } = query;
+      const properties = await propertyModel.getSpecificPropertiesAdvert(type);
+      return {
+        code: 200,
+        data: properties,
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
+      };
+    }
   }
+
 
   static getSpecificPropertyDetails(propertyId) {
     const property = propertyModel.findProperty(+propertyId);
