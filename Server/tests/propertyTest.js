@@ -76,7 +76,7 @@ describe('POST api/v1/property', () => {
         expect(res.status).to.be.eql(403);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Something went wrong');
+        expect(res.body.error).to.eql('Authentication Failed');
         done();
       });
   });
@@ -267,14 +267,14 @@ describe('PATCH api/v1/property/:propertyId', () => {
     chai.request(app)
       .patch('/api/v1/property/10')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ 
+      .send({
         price: '889898.90',
       })
       .end((err, res) => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('The property with the given ID does not exist');
+        expect(res.body.error).to.eql('The property with the given ID does not exist for you');
         done();
       });
   });
@@ -299,7 +299,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
     chai.request(app)
       .patch('/api/v1/property/1')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ 
+      .send({
         price: '',
       })
       .end((err, res) => {
@@ -310,11 +310,12 @@ describe('PATCH api/v1/property/:propertyId', () => {
         done();
       })
   });
+
   it('Should display an error message', (done) => {
     chai.request(app)
       .patch('/api/v1/property/1s')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ 
+      .send({
         price: '889898.90',
       })
       .end((err, res) => {
@@ -328,9 +329,9 @@ describe('PATCH api/v1/property/:propertyId', () => {
 
   it('Should display a success message', (done) => {
     chai.request(app)
-      .patch('/api/v1/property/8')
+      .patch('/api/v1/property/1')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ 
+      .send({
         price: '889898.90',
       })
       .end((err, res) => {

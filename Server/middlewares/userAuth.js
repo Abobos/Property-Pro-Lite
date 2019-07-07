@@ -13,6 +13,7 @@ export default class Auth {
     if (!validator.isEmail(email)) return sendErrorResponse(res, 400, 'Please enter a valid email');
     if (!validator.isLength(phoneNumber, 11)) return sendErrorResponse(res, 400, 'Phone Number should be at least 11 characters');
     if (!validator.isNumber(phoneNumber)) return sendErrorResponse(res, 400, 'Your Phone Number is not valid');
+    if (validator.isEmpty(address)) return sendErrorResponse(res, 400, 'Address is not allowed to be empty');
     if (!validator.isAddress(address)) return sendErrorResponse(res, 400, 'Please enter a valid address');
     return next();
   }
