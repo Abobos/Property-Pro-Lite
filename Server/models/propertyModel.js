@@ -50,7 +50,16 @@ class PropertyModel {
     const propertyAdverts = await db.query(sqlStatement);
     return propertyAdverts.rows;
   }
-  
+
+  async getSpecificPropertiesAdvert(type) {
+    const sqlStatement = `SELECT ${this.table}.id, ${this.table}.name, ${this.table}.status, ${this.table}.type,
+    ${this.table}.state, ${this.table}.city, ${this.table}.address, ${this.table}.price, ${this.table}.created_on,
+    ${this.table}.image_url, users.email as ownerEmail, users.phoneNumber as ownerPhoneNUmber FROM ${this.table}, users
+    WHERE users.id = ${this.table}.owner AND ${this.table}.type = $1`;
+    const propertyAdverts = await db.query(sqlStatement, [type]);
+    return propertyAdverts.rows;
+  }
+
   findProperty(propertyId) {
     return this.properties.find(({ id }) => id === propertyId);
   }

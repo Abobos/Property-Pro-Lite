@@ -31,8 +31,8 @@ export default class PropertyController {
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
-  static getSpecificPropertiesAdvert(query) {
-    const response = propertyService.getSpecificPropertiesAdvert(query);
+  static async getSpecificPropertiesAdvert(query) {
+    const response = await propertyService.getSpecificPropertiesAdvert(query);
     return response;
   }
 

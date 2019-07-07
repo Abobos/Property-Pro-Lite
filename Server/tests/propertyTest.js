@@ -415,7 +415,7 @@ describe('GET api/v2/property', () => {
 });
 
 describe('GET api/v2/property?type=propertyType', () => {
-  it('Should display a success message', (done) => {
+  it('Should display an error message', (done) => {
     chai.request(app)
       .get('/api/v2/property')
       .set('Authorization', `Bearer ${userToken}`)
@@ -427,6 +427,7 @@ describe('GET api/v2/property?type=propertyType', () => {
         done();
       });
   });
+
   it('Should display a success message', (done) => {
     chai.request(app)
       .get('/api/v2/property')
