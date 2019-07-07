@@ -9,7 +9,7 @@ export default class Property {
     const { path: imagePath } = req.files[0];
     if (!validator.isPropertyName(name)) return sendErrorResponse(res, 400, 'Property Name is not allowed to be empty, and it should contain only alphabets e.g Gold Apartments, Silver Buildings, Dapper Houses, Edifice');
     if (validator.isEmpty(price)) return sendErrorResponse(res, 400, 'Price is not allowed to be empty');
-    if (isNaN(price)) return sendErrorResponse(res, 400, 'Price is not allowed to be empty, and it should be of the form: 3000000, 300000.90');
+    if (isNaN(price)) return sendErrorResponse(res, 400, 'Please enter a valid price e.g 3000000, 300000.90');
     if (!validator.isPropertyType(type)) return sendErrorResponse(res, 400, 'Property Type is not allowed to be empty, and it should be of the form: 3 bedroom, 2 bedroom, mini flat, etc.');
     if (!validator.isName(state)) return sendErrorResponse(res, 400, 'State is not allowed to be empty, and it should contain only alphabets e.g Delta, Lagos');
     if (!validator.isName(city)) return sendErrorResponse(res, 400, 'City is not allowed to be empty, and it should contain only alphabets e.g Warri, Ikeja');

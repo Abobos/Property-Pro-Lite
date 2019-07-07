@@ -8,7 +8,7 @@ import PropertyController from '../controllers/propertyController';
 
 const router = Router();
 
-router.post('/property', 
+router.post('/property',
   verifyToken,
   upload.array('image', 10),
   trimmer,
