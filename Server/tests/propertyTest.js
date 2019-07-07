@@ -100,6 +100,27 @@ describe('POST api/v2/property', () => {
         done();
       });
   });
+
+  it('Should display a success message', (done) => {
+    chai.request(app)
+      .post('/api/v2/property')
+      .set('Authorization', `Bearer ${userToken}`)
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .field('name', 'gift property')
+      .field('type', '2 bedroom')
+      .field('price', '3000000')
+      .field('state', 'Delta')
+      .field('city', 'Warri')
+      .field('address', '10 Oladipupo Oduwole')
+      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .end((err, res) => {
+        expect(res.status).to.be.eql(201);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        done();
+      });
+  });
+
   it('Should display an error message', (done) => {
     chai.request(app)
       .post('/api/v2/property')
@@ -451,12 +472,14 @@ describe('GET api/v2/property/:propertyId', () => {
         expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.be.eql('The property with the given ID does not exist');
         done();
       });
   });
+
   it('Should display a success message', (done) => {
     chai.request(app)
-      .get('/api/v2/property/5')
+      .get('/api/v2/property/2')
       .set('Authorization', `Bearer ${userToken}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(200);
