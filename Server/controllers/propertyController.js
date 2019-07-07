@@ -17,9 +17,9 @@ export default class PropertyController {
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
-  static markPropertyAdvert(req, res) {
+  static async markPropertyAdvert(req, res) {
     const { propertyId } = req.params;
-    const response = propertyService.markPropertyAdvert(propertyId);
+    const response = await propertyService.markPropertyAdvert(propertyId, req.decoded.userId);
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }

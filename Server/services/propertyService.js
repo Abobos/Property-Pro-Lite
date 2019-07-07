@@ -39,20 +39,26 @@ export default class PropertyService {
     }
   }
   
-  static markPropertyAdvert(propertyId) {
-    const property = propertyModel.findProperty(+propertyId);
-    if (!property) {
+  static async markPropertyAdvert(propertyId, ownerId) {
+    try {
+      const property = await propertyModel.findPropertyWithOwnerId(+propertyId, ownerId);
+      if (!property) {
+        return {
+          code: 404,
+          error: 'The property with the given ID does not exist for you',
+        };
+      }
+      const propertyUpdatedDetails = await propertyModel.markPropertyAsSold(+propertyId, ownerId);
       return {
-        code: 404,
-        error: 'The property with the given ID does not exist',
+        code: 200,
+        data: propertyUpdatedDetails,
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
-    propertyModel.properties[propertyIndex].status = 'sold';
-    return {
-      code: 200,
-      data: property,
-    };
   }
 
   static deletePropertyAdvert(propertyId) {

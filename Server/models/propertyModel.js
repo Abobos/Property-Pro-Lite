@@ -30,8 +30,10 @@ class PropertyModel {
     return updatedProperty.rows[0];
   }
 
-  createProperty(property) {
-    this.properties.push(property);
+ async markPropertyAsSold(propertyId, owner) {
+    const sqlStatement = `UPDATE ${this.table} SET status = $1 WHERE id = $2 AND owner = $3 RETURNING *`;
+    const markedProperty = await db.query(sqlStatement, ['Sold', propertyId, owner]);
+    return markedProperty.rows[0];
   }
 
   findProperty(propertyId) {
