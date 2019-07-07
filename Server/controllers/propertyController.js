@@ -8,10 +8,11 @@ export default class PropertyController {
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
 
-  static updatePropertyAdvert(req, res) {
+  static async updatePropertyAdvert(req, res) {
     const { propertyId } = req.params;
     const { price } = req.body;
-    const response = propertyService.updatePropertyAdvert(propertyId, price);
+    const response = await propertyService
+      .updatePropertyAdvert(propertyId, price, req.decoded.userId);
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }

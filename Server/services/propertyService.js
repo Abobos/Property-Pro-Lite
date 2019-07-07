@@ -16,20 +16,27 @@ export default class PropertyService {
     }
   }
 
-  static updatePropertyAdvert(propertyId, propertyNewPrice) {
-    const property = propertyModel.findProperty(+propertyId);
-    if (!property) {
+  static async updatePropertyAdvert(propertyId, propertyNewPrice, ownerId) {
+    try {
+      const property = await propertyModel.findPropertyWithOwnerId(+propertyId, ownerId);
+      if (!property) {
+        return {
+          code: 404,
+          error: 'The property with the given ID does not exist for you',
+        };
+      }
+      const propertyUpdatedDetails = await propertyModel
+        .updateProperty(+propertyId, propertyNewPrice, ownerId);
       return {
-        code: 404,
-        error: 'The property with the given ID does not exist',
+        code: 200,
+        data: propertyUpdatedDetails,
+      };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
       };
     }
-    const propertyIndex = propertyModel.findPropertyIndex(+propertyId);
-    propertyModel.properties[propertyIndex].price = propertyNewPrice;
-    return {
-      code: 200,
-      data: property,
-    };
   }
   
   static markPropertyAdvert(propertyId) {

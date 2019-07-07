@@ -18,6 +18,18 @@ class PropertyModel {
     return propertyDetails.rows[0];
   }
 
+  async findPropertyWithOwnerId(propertyId, owner) {
+    const sqlStatement = `SELECT * FROM ${this.table} WHERE id = $1 AND owner = $2`;
+    const propertyDetails = await db.query(sqlStatement, [propertyId, owner]);
+    return propertyDetails.rows[0];
+  }
+
+  async updateProperty(propertyId, newPrice, owner) {
+    const sqlStatement = `UPDATE ${this.table} SET price = $1 WHERE id = $2 AND owner = $3 RETURNING *`;
+    const updatedProperty = await db.query(sqlStatement, [newPrice, propertyId, owner]);
+    return updatedProperty.rows[0];
+  }
+
   createProperty(property) {
     this.properties.push(property);
   }

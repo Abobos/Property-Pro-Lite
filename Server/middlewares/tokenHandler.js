@@ -12,7 +12,7 @@ export const verifyToken = (req, res, next) => {
     req.decoded = decoded;
     next();
   } catch (err) {
-    const error = err.message ? 'Something went wrong' : err;
+    const error = err.message ? 'Authentication Failed' : err;
     sendErrorResponse(res, 403, error);
   }
 };
