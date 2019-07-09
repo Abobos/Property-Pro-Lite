@@ -1,6 +1,10 @@
 import userModel from '../models/userModel';
 import passwordHash from '../helpers/passwordHash';
 import generateToken from '../middlewares/tokenHandler';
+import generatePassword from '../utils/passwordGenerator';
+import sentenceCase from '../utils/sentenceCase';
+import MailHandler from '../utils/sendEmail';
+import validator from '../utils/validator';
 
 export default class userService {
   static async signup(newUserDetails) {
@@ -17,8 +21,8 @@ export default class userService {
       } = newUserDetails;
       const hashedPassword = await passwordHash.hashPassword(password);
       const newUser = {
-        first_name: firstName,
-        last_name: lastName,
+        first_name: sentenceCase(firstName),
+        last_name: sentenceCase(lastName),
         email,
         password: hashedPassword,
         phoneNumber,
@@ -69,6 +73,55 @@ export default class userService {
           email: existingUser.email,
         },
       };
+    } catch (err) {
+      return {
+        code: 500,
+        error: 'Something went wrong',
+      };
+    }
+  }
+
+  static async resetPassword(request) {
+    try {
+      const { user_email: userEmail } = request.params;
+      const existingUser = await userModel.findUser(userEmail);
+      if (!existingUser) {
+        return {
+          code: 404,
+          error: 'Invalid credentials',
+        };
+      }
+      const { old_password: oldPassword, new_password: newPassword } = request.body;
+      if (!oldPassword && !newPassword) {
+        const password = generatePassword(`${existingUser.first_name} ${existingUser.last_name}`);
+        const response = await MailHandler.sendEmail(existingUser.email, existingUser.first_name, password);
+        if (response  === 'success') {
+          const hashedPassword = await passwordHash.hashPassword(password);
+          const updatedUserDetails = await userModel.updateUser(hashedPassword, existingUser.email);
+          if (updatedUserDetails) return { code: 204 };
+        } else {
+          return {
+            code: 500,
+            error: 'Network issue: Something went wrong',
+          };
+        }
+      }
+      if (!validator.isPassword(newPassword)) {
+        return {
+          code: 400,
+          error: 'password should contain at least one Uppercase letter, one lowercase letter, and at least one digit',
+        };
+      }
+      const hashValue = await passwordHash.compareHashPassword(oldPassword, existingUser.password);
+      if (!hashValue) {
+        return {
+          code: 400,
+          error: 'your password is incorrect',
+        };
+      }
+      const hashedPassword = await passwordHash.hashPassword(newPassword);
+      const updatedUser = await userModel.updateUser(hashedPassword, existingUser.email);
+      if (updatedUser) return { code: 204 };
     } catch (err) {
       return {
         code: 500,

@@ -3,7 +3,7 @@ const sendErrorResponse = (res, code, errorMessage) => {
     status: 'error',
     error: errorMessage,
   });
-}
+};
 
 export const sendSuccessResponse = (res, code, token, data) => {
   res.status(code).json({
@@ -11,6 +11,6 @@ export const sendSuccessResponse = (res, code, token, data) => {
     token,
     data,
   });
-}
+};
 
 export default sendErrorResponse;

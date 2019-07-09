@@ -13,4 +13,10 @@ export default class UserController {
     if (response.error) return sendErrorResponse(res, response.code, response.error);
     return sendSuccessResponse(res, response.code, response.token, response.data);
   }
+
+  static async resetPassword(req, res) {
+    const response = await userService.resetPassword(req);
+    if (response.error) return sendErrorResponse(res, response.code, response.error);
+    return sendSuccessResponse(res, response.code, response.token, response.data);
+  }
 }

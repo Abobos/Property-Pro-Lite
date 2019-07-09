@@ -19,12 +19,12 @@ dotenv.config();
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Property Pro API');
+  res.send('Welcome to Property Pro API'); 
 });
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use('/api/v2', userRoute);
-app.use('/api/v2', propertyRoute);
+app.use('/api/v1', userRoute);
+app.use('/api/v1', propertyRoute);
 
 app.all('*', (req, res) => res.status(404).json({
   status: 'error',
@@ -33,6 +33,6 @@ app.all('*', (req, res) => res.status(404).json({
 
 app.listen(port, () => {
   logger(`${env}:server`, `App started on PORT ${port}`);
-})
+});
 
 export default app;

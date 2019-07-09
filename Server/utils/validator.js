@@ -11,6 +11,10 @@ export default class Validators {
     return /^[A-Za-z0-9.-_]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(email);
   }
 
+  static isPhoneNumber(number) {
+    return /^[0-9]{11}$/.test(number);
+  }
+
   static isNumber(number) {
     return /^[0-9]+$/.test(number);
   }
@@ -26,10 +30,6 @@ export default class Validators {
 
   static isAddress(address) {
     return /^[A-Za-z0-9\,\. \-]{5,}$/.test(address);
-  }
-
-  static isPropertyName(PropertyName) {
-    return /^[a-zA-Z\s]+$/.test(PropertyName);
   }
 
   static isPropertyType(propertyType) {

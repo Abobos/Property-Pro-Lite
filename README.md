@@ -98,7 +98,7 @@ To wield the features of Property Pro Lite, follow these steps
 
 ### License
 
-This project is authored by [Blessing Makaraba](https://github.com/abobos) and is licensed to use under the MIT License - see the [License.md](https://github.com/Abobos/Property-Pro-Lite/blob/develop/LICENSE) file for details
+This project is authored by [Blessing Makaraba](https://github.com/abobos) and is licensed to use under the MIT License - see the [License](https://github.com/Abobos/Property-Pro-Lite/blob/develop/LICENSE) file for details
 
 ### Acknowledgments
 

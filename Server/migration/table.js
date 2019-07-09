@@ -21,7 +21,6 @@ const createPropertiesTable = `
   CREATE TABLE properties(
     id SERIAL PRIMARY KEY,
     owner INT NOT NULL,
-    name VARCHAR(60) NOT NULL,
     type VARCHAR(20) NOT NULL,
     status VARCHAR(10) NOT NULL DEFAULT 'Available',
     price NUMERIC NOT NULL,
