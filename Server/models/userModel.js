@@ -22,6 +22,12 @@ class UserModel {
     const result = await db.query(sqlStatement, params);
     return result.rows[0];
   }
+
+  async updateUser(password, email) {
+    const sqlStatement = `UPDATE ${this.table} SET password = $1 WHERE email = $2 RETURNING id, first_name, last_name, email`;
+    const result = await db.query(sqlStatement, [password, email]);
+    return result.rows[0];
+  }
 }
 
 export default new UserModel();

@@ -6,6 +6,6 @@ const trimmer = (req, res, next) => {
   });
   req.body = userData;
   return next();
-}
+};
 
 export default trimmer;
