@@ -123,6 +123,7 @@ export default class userService {
       const updatedUser = await userModel.updateUser(hashedPassword, existingUser.email);
       if (updatedUser) return { code: 200, status: 204 };
     } catch (err) {
+      console.log(err);
       return {
         code: 500,
         error: 'Something went wrong',
