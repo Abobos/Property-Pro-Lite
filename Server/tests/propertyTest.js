@@ -279,7 +279,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
     chai.request(app)
       .patch('/api/v1/property/1')
       .set('Authorization', `Bearer ${userToken}`)
-      .send({ 
+      .send({
         price: '889898.9s',
       })
       .end((err, res) => {
@@ -363,6 +363,98 @@ describe('PATCH api/v1/property/:propertyId/sold', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('success');
         expect(res.body.data.status).to.eql('Sold');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/flag', () => {
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .post('/api/v1/flag')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({
+        property_id: '3s',
+        reason: 'weird demands',
+        description: 'The demands are unwanted',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('property_id is required, and it should be valid');
+        done();
+      });
+  });
+
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .post('/api/v1/flag')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({
+        property_id: '8',
+        reason: 'weird demands',
+        description: 'The demands are unwanted',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(404);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('The property with the given ID does not exist');
+        done();
+      });
+  });
+
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .post('/api/v1/flag')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({
+        property_id: '8',
+        reason: '88',
+        description: 'The demands are unwanted',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('reason is required, and it should be form; weird demands, pricing, etc.');
+        done();
+      });
+  });
+
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .post('/api/v1/flag')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({
+        property_id: '8',
+        reason: 'weird demands',
+        description: '8',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(400);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('error');
+        expect(res.body.error).to.eql('description is required, and it should be valid');
+        done();
+      });
+  });
+
+  it('Should display an error message', (done) => {
+    chai.request(app)
+      .post('/api/v1/flag')
+      .set('Authorization', `Bearer ${userToken}`)
+      .send({
+        property_id: '1',
+        reason: 'weird demands',
+        description: 'The demands are unwanted',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(201);
+        expect(res.body).to.be.an('object');
+        expect(res.body.status).to.eql('success');
+        expect(res.body.data.message).to.eql('Property advert flagged successfully');
         done();
       });
   });

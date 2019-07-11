@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import upload from '../config/multer';
-import trimmer from '../middlewares/trimmer';
+import MagicValidator from '../middlewares/magicValidator';
 import { verifyToken } from '../middlewares/tokenHandler';
 import Auth from '../middlewares/propertyAuth';
 import cloudinary from '../middlewares/imageUploader';
@@ -11,7 +11,7 @@ const router = Router();
 router.post('/property',
   verifyToken,
   upload.array('image', 10),
-  trimmer,
+  MagicValidator.trimmer,
   Auth.postProperty,
   cloudinary.imageUploader,
   PropertyController.postPropertyAdvert);

@@ -39,8 +39,10 @@ const createFlagsTable = `
     property_id INT NOT NULL,
     reason VARCHAR(60) NOT NULL,
     description TEXT NOT NULL,
-    created_on VARCHAR(40) NOT NULL,
-    FOREIGN KEY (property_id) REFERENCES "properties" (id) ON UPDATE CASCADE ON DELETE CASCADE
+    reported_by INT NOT NULL,
+    created_on TEXT DEFAULT '${todayDate}',
+    FOREIGN KEY (property_id) REFERENCES "properties" (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (reported_by) REFERENCES "users" (id) ON UPDATE CASCADE ON DELETE CASCADE
   );`;
 
 const migrateDB = async () => {

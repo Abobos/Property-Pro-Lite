@@ -16,7 +16,7 @@ class UserModel {
     const {
       first_name: firstName, last_name: lastName, email, password, phoneNumber, address,
     } = newUser;
-    const sqlStatement = `INSERT INTO ${this.table} (first_name, last_name, email, password, phoneNumber, address) 
+    const sqlStatement = `INSERT INTO ${this.table} (first_name, last_name, email, password, phoneNumber, address)
                            VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
     const params = [firstName, lastName, email, password, phoneNumber, address];
     const result = await db.query(sqlStatement, params);
