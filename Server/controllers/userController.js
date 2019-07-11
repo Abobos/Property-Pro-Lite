@@ -1,5 +1,5 @@
 import userService from '../services/userService';
-import sendErrorResponse, { sendSuccessResponse } from '../helpers/sendResponse';
+import sendErrorResponse, { sendSuccessResponse, sendStatusResponse } from '../helpers/sendResponse';
 
 export default class UserController {
   static async signup(req, res) {
@@ -17,6 +17,6 @@ export default class UserController {
   static async resetPassword(req, res) {
     const response = await userService.resetPassword(req);
     if (response.error) return sendErrorResponse(res, response.code, response.error);
-    return sendSuccessResponse(res, response.code, response.token, response.data);
+    return sendStatusResponse(res, response.code, response.status);
   }
 }

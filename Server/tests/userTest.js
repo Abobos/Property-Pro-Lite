@@ -76,7 +76,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('first_name is required, and it should contain only alphabets');
@@ -96,7 +96,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('last_name is required, and it should contain only alphabets');
@@ -116,7 +116,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('password is required, and it should be at least six characters');
@@ -136,7 +136,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('password should contain at least one Uppercase letter, one lowercase letter, and at least one digit');
@@ -156,7 +156,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('email is required, and it should be of the form; example@ymail.com');
@@ -176,7 +176,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634');
@@ -196,7 +196,7 @@ describe('POST /signup & /signin', () => {
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634');
@@ -216,7 +216,7 @@ describe('POST /signup & /signin', () => {
         address: '',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('address is required');
@@ -236,7 +236,7 @@ describe('POST /signup & /signin', () => {
         address: '10',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Please enter a valid address');
@@ -252,7 +252,7 @@ describe('POST /signup & /signin', () => {
         password: 'Bless9',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('email is required, and it should be of the form; example@ymail.com');
@@ -268,7 +268,7 @@ describe('POST /signup & /signin', () => {
         password: 'Bless',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('password is required, and it should be at least six characters');
@@ -284,7 +284,7 @@ describe('POST /signup & /signin', () => {
         password: 'Blesss',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('password should contain at least one Uppercase letter, one lowercase letter, and at least one digit');
@@ -300,7 +300,7 @@ describe('POST /signup & /signin', () => {
         password: 'Blessing9',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(401);
+        expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Invalid credentials');
@@ -316,7 +316,7 @@ describe('POST /signup & /signin', () => {
         password: 'Blessin9',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(401);
+        expect(res.status).to.be.eql(404);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Invalid credentials');
@@ -344,7 +344,7 @@ describe('POST /signup & /signin', () => {
     chai.request(app)
       .post('/api/v1/auth/blessing/reset_password')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('please enter a valid email');
@@ -368,7 +368,8 @@ describe('POST /signup & /signin', () => {
     chai.request(app)
       .post('/api/v1/auth/suspieabobo@yahoo.com/reset_password')
       .end((err, res) => {
-        expect(res.status).to.be.eql(204);
+        expect(res.status).to.be.eql(200);
+        expect(res.body.status).to.eql(204);
         done();
       });
   });
