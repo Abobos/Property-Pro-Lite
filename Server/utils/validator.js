@@ -7,6 +7,10 @@ export default class Validators {
     return /^[a-zA-Z]+$/.test(name);
   }
 
+  static isText(string) {
+    return /^[a-zA-Z(\s,\.)?]+$/.test(string);
+  }
+
   static isEmail(email) {
     return /^[A-Za-z0-9.-_]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/.test(email);
   }

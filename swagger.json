@@ -16,6 +16,15 @@
   },
   "host": "propertyprolite1.herokuapp.com",
   "basePath": "/api/v1",
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "scheme": "bearer",
+      "description": "You are required to pass the JWT token received upon signup and signin in the headers to access secured endpoint, required input format: \"Bearer \\<token\\>\"",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
   "tags": [
     {
       "name": "Users",
@@ -95,22 +104,65 @@
         }
       }
     },
+    "/auth/{user_email}/reset_password": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "user can reset his/her password",
+        "description": "",
+        "operationId": "resetPassword",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "user_email",
+            "in": "path",
+            "description": "type of property to fetch",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "body",
+            "description": "old password and new password of user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "old_password": {
+                  "type": "string",
+                  "example": "Blesdfnnjkjk9"
+                },
+                "new_password": {
+                  "type": "string",
+                  "example": "Blesdfnjk9"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "400": {
+            "description": "email is invalid"
+          },
+          "404": {
+            "description": "Invalid credentials"
+          }
+        }
+      }
+    },
     "/property": {
       "post": {
         "tags": ["Properties"],
         "summary": "Post new property advert",
         "description": "",
         "oprationId": "PostAPropertyAdvert",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "consumes": ["multipart/form-data"],
         "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "name",
-            "in": "formData",
-            "description": "Name of the Property",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "type",
             "in": "formData",
@@ -171,6 +223,11 @@
         "summary": "View all Properties advert",
         "description": "",
         "operationId": "GetAllPropertiesAdvert",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -189,6 +246,11 @@
         "summary": "Get all Properties Advert of a specific type",
         "description": "",
         "operationId": "GetSpecificPropertiesAdvert",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "type",
@@ -216,6 +278,11 @@
         "summary": "Get a specific property Details",
         "description": "",
         "operationId": "GetASpecificPropertyDetails",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "propertyId",
@@ -242,6 +309,11 @@
         "description": "",
         "consumes": "application/json",
         "operationId": "UpdatePropertyPrice",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "propertyId",
@@ -282,6 +354,11 @@
         "summary": "Delete a specific property",
         "description": "Only an agent can delete a specific property",
         "operationId": "DeleteASpecificProperty",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "propertyId",
@@ -306,6 +383,11 @@
         "description": "",
         "consumes": "application/json",
         "operationId": "MarkAPropertyAsSold",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "name": "propertyId",
@@ -319,6 +401,54 @@
         "responses": {
           "200": {
             "description": "Property that has been mark as sold"
+          }
+        }
+      }
+    },
+    "/flag": {
+      "post": {
+        "tags": ["Properties"],
+        "summary": "Flag a property advert as fraudulent",
+        "description": "",
+        "consumes": "application/json",
+        "operationId": "FlagAPropertyAdvert",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "flag description",
+            "in": "body",
+            "description": "necessary parameters to flag an advert as fradulent",
+            "schema": {
+              "type": "object",
+              "requrired": ["property_id", "reason", "description"],
+              "properties": {
+                "property_id": {
+                  "type": "string",
+                  "example": "1"
+                },
+                "reason": {
+                  "type": "string",
+                  "example": "weird demands"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "The demand is so high"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "400": {
+            "description": "Please enter a valid reason and description"
+          },
+          "201": {
+            "description": "Property Advert flag successfully"
           }
         }
       }
@@ -397,10 +527,6 @@
           "type": "integer",
           "example": "Available"
         },
-        "name": {
-          "type": "string",
-          "example": "Gold Apartments"
-        },
         "type": {
           "type": "string",
           "example": "3 bedroom"
@@ -421,7 +547,7 @@
           "type": "string",
           "example": "No. 9 Omoru"
         },
-        "created-on": {
+        "created_on": {
           "type": "string",
           "example": "25th January, 2018"
         },
@@ -449,10 +575,6 @@
           "type": "integer",
           "example": "Available"
         },
-        "name": {
-          "type": "string",
-          "example": "Gold Apartments"
-        },
         "type": {
           "type": "string",
           "example": "3 bedroom"
@@ -473,7 +595,7 @@
           "type": "string",
           "example": "No. 9 Omoru"
         },
-        "created-on": {
+        "created_on": {
           "type": "string",
           "example": "25th January, 2018"
         },
@@ -481,11 +603,11 @@
           "type": "string",
           "example": "https://res.cloudinary.com/property-pro-lite/image/upload/v1561326667/iiyxcceemy20eeincxlf.jpg"
         },
-        "ownerPhoneNumber": {
+        "owner_phonenumber": {
           "type": "string",
           "example": "08167672019"
         },
-        "ownerEmail": {
+        "owner_email": {
           "type": "email",
           "example": "blessingmakaraba@gmail.com"
         }

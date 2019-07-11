@@ -70,13 +70,15 @@ export default class PropertyService {
           error: 'The property with the given ID does not exist for you',
         };
       }
-      await propertyModel.deleteProperty(+propertyId, owner);
-      return {
-        code: 200,
-        data: {
-          message: 'Property advert deleted successfully',
-        },
-      };
+      const deletedPropertyDetails = await propertyModel.deleteProperty(+propertyId, owner);
+      if (deletedPropertyDetails) {
+        return {
+          code: 200,
+          data: {
+            message: 'Property advert deleted successfully',
+          },
+        };
+      }
     } catch (err) {
       return {
         code: 500,
