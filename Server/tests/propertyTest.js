@@ -50,7 +50,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(403);
+        expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Please provide a token');
@@ -71,7 +71,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(403);
+        expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Authentication Failed');
@@ -129,7 +129,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('type is required, and it should be of the form: 3 bedroom, 2 bedroom, mini flat, etc.');
@@ -149,7 +149,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('price is required, it should be of the form; 3000000, 300000.90')
@@ -169,7 +169,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.error).to.eql('price is required, it should be of the form; 3000000, 300000.90')
         done();
@@ -189,7 +189,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('state is required, and it should contain only alphabets e.g Delta, Lagos');
@@ -209,7 +209,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('city is required, and it should contain only alphabets e.g Warri, Ikeja');
@@ -229,7 +229,7 @@ describe('POST api/v1/property', () => {
       .field('address', '100')
       .attach('image', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('address is required, and it should be valid');
@@ -249,7 +249,7 @@ describe('POST api/v1/property', () => {
       .field('address', '10 Oladipupo Oduwole')
       .attach('image', fs.readFileSync(filepathI), 'home5.gif')
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('only jpeg, jpg, and png image formats are accepted');
@@ -283,10 +283,10 @@ describe('PATCH api/v1/property/:propertyId', () => {
         price: '889898.9s',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('Please enter a valid price e.g 30000000, 30054400.9');
+        expect(res.body.error).to.eql('Please enter a valid price e.g 30000000, 30054422.9');
         done();
       });
   });
@@ -299,7 +299,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
         price: '',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Price is not allowed to be empty');
@@ -315,7 +315,7 @@ describe('PATCH api/v1/property/:propertyId', () => {
         price: '889898.90',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Please enter a valid property ID');
@@ -379,7 +379,7 @@ describe('POST api/v1/flag', () => {
         description: 'The demands are unwanted',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('property_id is required, and it should be valid');
@@ -415,7 +415,7 @@ describe('POST api/v1/flag', () => {
         description: 'The demands are unwanted',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('reason is required, and it should be form; weird demands, pricing, etc.');
@@ -433,7 +433,7 @@ describe('POST api/v1/flag', () => {
         description: '8',
       })
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('description is required, and it should be valid');
@@ -509,7 +509,7 @@ describe('GET api/v1/property?type=propertyType', () => {
       .set('Authorization', `Bearer ${userToken}`)
       .query({type: '3 Bedroom'})
       .end((err, res) => {
-        expect(res.status).to.be.eql(400);
+        expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         done();

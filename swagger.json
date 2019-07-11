@@ -61,11 +61,11 @@
           "201": {
             "description": "Creates a new user"
           },
-          "400": {
+          "422": {
             "description": "Invalid inputs"
           },
           "409": {
-            "description": "User already created"
+            "description": "This email already exists"
           }
         }
       }
@@ -95,7 +95,7 @@
           "200": {
             "description": "Signin an existing user"
           },
-          "400": {
+          "422": {
             "description": "Invalid inputs"
           },
           "404": {
@@ -140,7 +140,7 @@
         ],
         "produces": ["application/json"],
         "responses": {
-          "400": {
+          "422": {
             "description": "email is invalid"
           },
           "404": {
@@ -207,7 +207,7 @@
           }
         ],
         "responses": {
-          "400": {
+          "422": {
             "description": "Invalid input fields"
           },
           "201": {
@@ -444,7 +444,7 @@
         ],
         "produces": ["application/json"],
         "responses": {
-          "400": {
+          "422": {
             "description": "Please enter a valid reason and description"
           },
           "201": {

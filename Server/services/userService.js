@@ -52,14 +52,14 @@ export default class userService {
       const existingUser = await userModel.findUser(userEntry.email);
       if (!existingUser) {
         return {
-          code: 401,
+          code: 404,
           error: 'Invalid credentials',
         };
       }
       const hashValue = await passwordHash.compareHashPassword(userEntry.password, existingUser.password);
       if (!hashValue) {
         return {
-          code: 401,
+          code: 404,
           error: 'Invalid credentials',
         };
       }
@@ -98,7 +98,7 @@ export default class userService {
         if (response  === 'success') {
           const hashedPassword = await passwordHash.hashPassword(password);
           const updatedUserDetails = await userModel.updateUser(hashedPassword, existingUser.email);
-          if (updatedUserDetails) return { code: 204 };
+          if (updatedUserDetails) return { code: 200, status: 204 };
         } else {
           return {
             code: 500,
@@ -108,20 +108,20 @@ export default class userService {
       }
       if (!validator.isPassword(newPassword)) {
         return {
-          code: 400,
+          code: 422,
           error: 'password should contain at least one Uppercase letter, one lowercase letter, and at least one digit',
         };
       }
       const hashValue = await passwordHash.compareHashPassword(oldPassword, existingUser.password);
       if (!hashValue) {
         return {
-          code: 400,
+          code: 422,
           error: 'your password is incorrect',
         };
       }
       const hashedPassword = await passwordHash.hashPassword(newPassword);
       const updatedUser = await userModel.updateUser(hashedPassword, existingUser.email);
-      if (updatedUser) return { code: 204 };
+      if (updatedUser) return { code: 200, status: 204 };
     } catch (err) {
       return {
         code: 500,

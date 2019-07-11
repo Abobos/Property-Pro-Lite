@@ -13,4 +13,10 @@ export const sendSuccessResponse = (res, code, token, data) => {
   });
 };
 
+export const sendStatusResponse = (res, code, statusCode) => {
+  res.status(code).json({
+    status: statusCode,
+  });
+};
+
 export default sendErrorResponse;
