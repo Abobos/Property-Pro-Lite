@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import upload from '../config/multer';
-import MagicValidator from '../middlewares/magicValidator';
 import { verifyToken } from '../middlewares/tokenHandler';
 import Auth from '../middlewares/propertyAuth';
 import cloudinary from '../middlewares/imageUploader';
