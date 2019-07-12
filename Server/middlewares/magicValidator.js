@@ -1,15 +1,15 @@
 export default class MagicValidator {
-  static trimmer(req, res, next) {
-    if (req.body) {
-      const userData = {};
-      Object.keys(req.body).forEach((property) => {
-        const value = req.body[property];
-        Object.assign(userData, { [property]: value.trim() });
-      });
-      req.body = userData;
-    }
-    return next();
-  }
+  // static trimmer(req, res, next) {
+  //   if (req.body) {
+  //     const userData = {};
+  //     Object.keys(req.body).forEach((property) => {
+  //       const value = req.body[property];
+  //       Object.assign(userData, { [property]: value.trim() });
+  //     });
+  //     req.body = userData;
+  //   }
+  //   return next();
+  // }
 
   static transformEmail(req, res, next) {
     if (req.body.email) {
