@@ -4,7 +4,7 @@ export default class MagicValidator {
       const userData = {};
       Object.keys(req.body).forEach((property) => {
         const value = req.body[property];
-        Object.assign(userData, { [property]: value.trim() });
+        Object.assign(userData, { [property]: value.replace(/^\s+|\s+$/g, '') });
       });
       req.body = userData;
     }
