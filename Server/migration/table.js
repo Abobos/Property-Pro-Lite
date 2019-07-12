@@ -1,7 +1,6 @@
 import '@babel/polyfill';
 import db from '../config/pool';
 import logger from '../utils/logger';
-import todayDate from '../utils/dateFormater';
 
 const createUsersTable = `
   DROP TABLE IF EXISTS users CASCADE;
@@ -27,7 +26,7 @@ const createPropertiesTable = `
     state VARCHAR(40) NOT NULL,
     city VARCHAR(40) NOT NULL,
     address VARCHAR(128) NOT NULL,
-    created_on TEXT DEFAULT '${todayDate}',
+    created_on TEXT NOT NULL,
     image_url VARCHAR(128) NOT NULL,
     FOREIGN KEY (owner) REFERENCES "users" (id) ON UPDATE CASCADE ON DELETE CASCADE
 );`;
@@ -40,7 +39,7 @@ const createFlagsTable = `
     reason VARCHAR(60) NOT NULL,
     description TEXT NOT NULL,
     reported_by INT NOT NULL,
-    created_on TEXT DEFAULT '${todayDate}',
+    created_on TEXT NOT NULL,
     FOREIGN KEY (property_id) REFERENCES "properties" (id) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (reported_by) REFERENCES "users" (id) ON UPDATE CASCADE ON DELETE CASCADE
   );`;

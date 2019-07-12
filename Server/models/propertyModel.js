@@ -1,4 +1,5 @@
 import db from '../config/pool';
+import todayDate from '../utils/dateFormater';
 
 class PropertyModel {
   constructor() {
@@ -9,9 +10,9 @@ class PropertyModel {
     const {
       type, price, state, city, address, image_url: imageUrl,
     } = property;
-    const sqlStatement = `INSERT INTO ${this.table} (owner, type, price, state, city, address, image_url)`;
-    const placeholder = 'VALUES ($1, $2, $3, $4, $5, $6, $7)';
-    const params = [owner, type, price, state, city, address, imageUrl];
+    const sqlStatement = `INSERT INTO ${this.table} (owner, type, price, state, city, address, created_on, image_url)`;
+    const placeholder = 'VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
+    const params = [owner, type, price, state, city, address, todayDate, imageUrl];
     const propertyDetails = await db.query(`${sqlStatement} ${placeholder} RETURNING *`, params);
     return propertyDetails.rows[0];
   }

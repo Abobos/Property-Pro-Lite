@@ -194,7 +194,7 @@
           {
             "name": "price",
             "in": "formData",
-            "description": "address of the property",
+            "description": "price of the property",
             "required": true,
             "type": "string"
           },
