@@ -7,8 +7,7 @@ const router = Router();
 
 router.post('/auth/signup', Auth.signup, MagicValidator.transformEmail, UserController.signup);
 router.post('/auth/signin', Auth.signin, MagicValidator.transformEmail, UserController.signin);
-router.post('/auth/:user_email/reset_password', 
-  MagicValidator.trimmer,
+router.post('/auth/:user_email/reset_password',
   Auth.resetPassword,
   MagicValidator.transformEmail, 
   UserController.resetPassword);
