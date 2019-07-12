@@ -11,7 +11,7 @@ const createUsersTable = `
     last_name VARCHAR(128) NOT NULL,
     email VARCHAR(60) NOT NULL,
     password VARCHAR(128) NOT NULL,
-    phoneNumber VARCHAR(11) NOT NULL,
+    phone_number VARCHAR(11) NOT NULL,
     address VARCHAR(128) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT false
 );`;
@@ -22,7 +22,7 @@ const createPropertiesTable = `
     id SERIAL PRIMARY KEY,
     owner INT NOT NULL,
     type VARCHAR(20) NOT NULL,
-    status VARCHAR(10) NOT NULL DEFAULT 'Available',
+    status VARCHAR(10) NOT NULL DEFAULT 'available',
     price NUMERIC NOT NULL,
     state VARCHAR(40) NOT NULL,
     city VARCHAR(40) NOT NULL,

@@ -17,7 +17,7 @@ export default class userService {
         };
       }
       const {
-        first_name: firstName, last_name: lastName, email, password, phoneNumber, address,
+        first_name: firstName, last_name: lastName, email, password, phone_number: phoneNumber, address,
       } = newUserDetails;
       const hashedPassword = await passwordHash.hashPassword(password);
       const newUser = {
@@ -91,7 +91,7 @@ export default class userService {
           error: 'Invalid credentials',
         };
       }
-      const { old_password: oldPassword, new_password: newPassword } = request.body;
+      const { password: oldPassword, new_password: newPassword } = request.body;
       if (!oldPassword && !newPassword) {
         const password = generatePassword(`${existingUser.first_name} ${existingUser.last_name}`);
         const response = await MailHandler.sendEmail(existingUser.email, existingUser.first_name, password);
