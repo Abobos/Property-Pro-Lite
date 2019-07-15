@@ -12,7 +12,7 @@ const router = Router();
 router.post('/property',
   verifyToken,
   MagicValidator.trimmer,
-  upload.array('image', 10),
+  upload.array('image_url', 10),
   Auth.postProperty,
   cloudinary.imageUploader,
   PropertyController.postPropertyAdvert);

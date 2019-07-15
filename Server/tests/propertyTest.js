@@ -47,7 +47,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
@@ -67,7 +67,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
@@ -87,7 +87,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(201);
         expect(res.body).to.be.an('object');
@@ -106,7 +106,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(201);
         expect(res.body).to.be.an('object');
@@ -125,7 +125,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -145,7 +145,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -165,7 +165,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -185,7 +185,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta9')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -205,7 +205,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri9')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -225,7 +225,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '100')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -245,7 +245,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepathI), 'home5.gif')
+      .attach('image_url', fs.readFileSync(filepathI), 'home5.gif')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
