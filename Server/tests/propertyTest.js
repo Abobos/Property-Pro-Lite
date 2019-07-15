@@ -20,7 +20,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: 'No. 9 Omoru Street'
       })
       .end((err, res) => {
@@ -43,12 +43,11 @@ describe('POST api/v1/property', () => {
       .set('Authorization', '')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('type', '3 bedroom')
-      .field('contract_type', 'For Sale')
       .field('price', '3000000')
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
@@ -64,12 +63,11 @@ describe('POST api/v1/property', () => {
       .set('Authorization', `${userToken}J`)
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .field('type', '3 bedroom')
-      .field('contract_type', 'For Sale')
       .field('price', '3000000')
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(401);
         expect(res.body).to.be.an('object');
@@ -89,7 +87,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(201);
         expect(res.body).to.be.an('object');
@@ -108,7 +106,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(201);
         expect(res.body).to.be.an('object');
@@ -127,7 +125,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -147,7 +145,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -167,7 +165,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home5.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home5.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -187,7 +185,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta9')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -207,7 +205,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri9')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -227,7 +225,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '100')
-      .attach('image', fs.readFileSync(filepath), 'home4.jpg')
+      .attach('image_url', fs.readFileSync(filepath), 'home4.jpg')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -247,7 +245,7 @@ describe('POST api/v1/property', () => {
       .field('state', 'Delta')
       .field('city', 'Warri')
       .field('address', '10 Oladipupo Oduwole')
-      .attach('image', fs.readFileSync(filepathI), 'home5.gif')
+      .attach('image_url', fs.readFileSync(filepathI), 'home5.gif')
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
@@ -362,7 +360,7 @@ describe('PATCH api/v1/property/:propertyId/sold', () => {
         expect(res.status).to.be.eql(200);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('success');
-        expect(res.body.data.status).to.eql('Sold');
+        expect(res.body.data.status).to.eql('sold');
         done();
       });
   });

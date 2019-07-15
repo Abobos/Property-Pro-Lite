@@ -14,7 +14,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -33,7 +33,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'victory',
         last_name: 'Abobo',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -52,7 +52,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -64,7 +64,7 @@ describe('POST /signup & /signin', () => {
       });
   });
   
-  it('Should display an error message of first_name is required, and it should contain only alphabets', (done) => {
+  it('Should display an error message of first name is required, and it should contain only alphabets', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({ 
@@ -72,19 +72,19 @@ describe('POST /signup & /signin', () => {
         first_name: 'bles33',
         last_name: 'Abobo',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('first_name is required, and it should contain only alphabets');
+        expect(res.body.error).to.eql('first name is required, and it should contain only alphabets');
         done();
       });
   });
 
-  it('Should display an error message of last_name is required, and it should contain only alphabets', (done) => {
+  it('Should display an error message of last name is required, and it should contain only alphabets', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({ 
@@ -92,14 +92,14 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo3',
         password: 'Blessing9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('last_name is required, and it should contain only alphabets');
+        expect(res.body.error).to.eql('last name is required, and it should contain only alphabets');
         done();
       });
   });
@@ -112,7 +112,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -132,7 +132,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Blesss',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -152,7 +152,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
@@ -164,7 +164,7 @@ describe('POST /signup & /signin', () => {
       });
   });
 
-  it('Should display an error message of phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634', (done) => {
+  it('Should display an error message of phone_number is required, and it should be 11 characters - 08167679018, 07098987634', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({ 
@@ -172,19 +172,19 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless9',
-        phoneNumber: '0816767201',
+        phone_number: '0816767201',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634');
+        expect(res.body.error).to.eql('phone number is required, and it should be 11 characters - 08167679018, 07098987634');
         done();
       });
   });
 
-  it('Should display an error message of phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634', (done) => {
+  it('Should display an error message of phone_number is required, and it should be 11 characters - 08167679018, 07098987634', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send({ 
@@ -192,14 +192,14 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless9',
-        phoneNumber: '0816767201i',
+        phone_number: '0816767201i',
         address: '10 Oladipupo Oduwole',
       })
       .end((err, res) => {
         expect(res.status).to.be.eql(422);
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
-        expect(res.body.error).to.eql('phoneNumber is required, and it should be 11 characters - 08167679018, 07098987634');
+        expect(res.body.error).to.eql('phone number is required, and it should be 11 characters - 08167679018, 07098987634');
         done();
       });
   });
@@ -212,7 +212,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '',
       })
       .end((err, res) => {
@@ -232,7 +232,7 @@ describe('POST /signup & /signin', () => {
         first_name: 'Gift',
         last_name: 'Abobo',
         password: 'Bless9',
-        phoneNumber: '08167672019',
+        phone_number: '08167672019',
         address: '10',
       })
       .end((err, res) => {
@@ -360,6 +360,20 @@ describe('POST /signup & /signin', () => {
         expect(res.body).to.be.an('object');
         expect(res.body.status).to.eql('error');
         expect(res.body.error).to.eql('Invalid credentials');
+        done();
+      });
+  });
+
+  it('should have a status code of 204', (done)  => {
+    chai.request(app)
+      .post('/api/v1/auth/suspieabobo@yahoo.com/reset_password')
+      .send({
+        password: 'Blessing9',
+        new_password: 'Blessing98',
+      })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(200);
+        expect(res.body.status).to.eql(204);
         done();
       });
   });

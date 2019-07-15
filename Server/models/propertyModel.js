@@ -1,4 +1,5 @@
 import db from '../config/pool';
+import todayDate from '../utils/dateFormater';
 
 class PropertyModel {
   constructor() {
@@ -9,9 +10,9 @@ class PropertyModel {
     const {
       type, price, state, city, address, image_url: imageUrl,
     } = property;
-    const sqlStatement = `INSERT INTO ${this.table} (owner, type, price, state, city, address, image_url)`;
-    const placeholder = 'VALUES ($1, $2, $3, $4, $5, $6, $7)';
-    const params = [owner, type, price, state, city, address, imageUrl];
+    const sqlStatement = `INSERT INTO ${this.table} (owner, type, price, state, city, address, created_on, image_url)`;
+    const placeholder = 'VALUES ($1, $2, $3, $4, $5, $6, $7, $8)';
+    const params = [owner, type, price, state, city, address, todayDate, imageUrl];
     const propertyDetails = await db.query(`${sqlStatement} ${placeholder} RETURNING *`, params);
     return propertyDetails.rows[0];
   }
@@ -30,7 +31,7 @@ class PropertyModel {
 
   async markPropertyAsSold(propertyId, owner) {
     const sqlStatement = `UPDATE ${this.table} SET status = $1 WHERE id = $2 AND owner = $3 RETURNING *`;
-    const markedProperty = await db.query(sqlStatement, ['Sold', propertyId, owner]);
+    const markedProperty = await db.query(sqlStatement, ['sold', propertyId, owner]);
     return markedProperty.rows[0];
   }
 
@@ -43,7 +44,7 @@ class PropertyModel {
   async getPropertiesAdvert() {
     const sqlStatement = `SELECT ${this.table}.id, ${this.table}.status, ${this.table}.type,
     ${this.table}.state, ${this.table}.city, ${this.table}.address, ${this.table}.price, ${this.table}.created_on,
-    ${this.table}.image_url, users.email as owner_email, users.phoneNumber as owner_phonenumber FROM ${this.table}, users
+    ${this.table}.image_url, users.email as owner_email, users.phone_number as owner_phonenumber FROM ${this.table}, users
     WHERE users.id = ${this.table}.owner`;
     const propertyAdverts = await db.query(sqlStatement);
     return propertyAdverts.rows;
@@ -52,7 +53,7 @@ class PropertyModel {
   async getSpecificPropertiesAdvert(type) {
     const sqlStatement = `SELECT ${this.table}.id, ${this.table}.status, ${this.table}.type,
     ${this.table}.state, ${this.table}.city, ${this.table}.address, ${this.table}.price, ${this.table}.created_on,
-    ${this.table}.image_url, users.email as owner_email, users.phoneNumber as owner_phonenumber FROM ${this.table}, users
+    ${this.table}.image_url, users.email as owner_email, users.phone_number as owner_phonenumber FROM ${this.table}, users
     WHERE users.id = ${this.table}.owner AND ${this.table}.type = $1`;
     const propertyAdverts = await db.query(sqlStatement, [type]);
     return propertyAdverts.rows;
@@ -61,7 +62,7 @@ class PropertyModel {
   async getProperty(propertyId) {
     const sqlStatement = `SELECT ${this.table}.id, ${this.table}.status, ${this.table}.type,
     ${this.table}.state, ${this.table}.city, ${this.table}.address, ${this.table}.price, ${this.table}.created_on,
-    ${this.table}.image_url, users.email as owner_email, users.phoneNumber as owner_phonenumber FROM ${this.table}, users
+    ${this.table}.image_url, users.email as owner_email, users.phone_number as owner_phonenumber FROM ${this.table}, users
     WHERE ${this.table}.id = $1`;
     const propertyDetails = await db.query(sqlStatement, [propertyId]);
     return propertyDetails.rows[0];
